@@ -1,0 +1,30 @@
+{
+  "name": "pointofinterest",
+  "version": "1.0.0",
+  "description": "Copyright 2024 Angelo Ripamonti, Andrea Falcone, Davide Cicoria e Marcello Dong",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./assets/styles/input.css -o ./dist/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "css",
+    "html",
+    "tailwindcss"
+  ],
+  "author": "Angelo Ripamonti, Davide Cicoria, Andrea Falcone e Marcello Dong",
+  "license": "CC-BY-NC-ND-4.0",
+  "bugs": {
+    "url": "https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest/issues"
+  },
+  "homepage": "https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.16"
+  }
+}
