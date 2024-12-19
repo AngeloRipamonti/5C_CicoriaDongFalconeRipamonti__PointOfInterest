@@ -4,7 +4,7 @@
   "description": "Copyright 2024 Angelo Ripamonti, Andrea Falcone, Davide Cicoria e Marcello Dong",
   "main": "src/index.js",
   "scripts": {
-    "build": "tailwindcss -i ./assets/styles/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./assets/css/input.css -o ./dist/assets/css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +16,8 @@
     "javascript",
     "css",
     "html",
-    "tailwindcss"
+    "tailwindcss",
+    "iDocs"
   ],
   "author": "Angelo Ripamonti, Davide Cicoria, Andrea Falcone e Marcello Dong",
   "license": "CC-BY-NC-ND-4.0",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest#readme",
   "dependencies": {
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "uuid": "^11.0.3"
   }
 }
