@@ -1,170 +1,744 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-    <link href="assets/images/favicon.png" rel="icon" />
-    <title>PROGETTO POI</title>
-    <meta name="description" content="Your ThemeForest item Name and description">
-    <meta name="author" content="harnishdesign.net">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+        <link href="assets/images/favicon.png" rel="icon" />
+        <title>PROGETTO POI</title>
+        <meta name="description" content="Your ThemeForest item Name and description">
+        <meta name="author" content="harnishdesign.net">
 
-    <!-- Stylesheet ============================== -->
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
-    <!-- Highlight Syntax -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
-</head>
+        <!-- Stylesheet ============================== -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+        <!-- Font Awesome Icon -->
+        <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
+        <!-- Highlight Syntax -->
+        <link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
+        <!-- Custom Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/table-idocs.css">
+    </head>
+    <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
 
-<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
-
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <!-- Preloader End -->
-
-    <!-- Document Wrapper -->
-    <div id="main-wrapper">
-
-
-
-        <!-- Content -->
-        <div id="content" role="main">
-
-            <!-- Sidebar Navigation -->
-            <div class="idocs-navigation bg-dark docs-navigation-dark">
-                <ul class="nav flex-column ">
-                    <li class="nav-item"><a class="nav-link active" href="#start">Inizio</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#architettura_informazione">Architettura
-                            informazione</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#UML">UML</a>
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link" href="#umlcasiduso">Casi d'uso</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#umloggetti">Oggetti</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#umlstato">Stato</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#umlsequenza">Sequenza</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#contenuti">Contenuti</a>
-
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#wireframes">Wireframes</a></li>
-
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#progetto">Il progetto</a>
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link" href="#link">Link al progetto</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
+        </div>
+        <!-- Preloader End -->
+
+        <!-- Document Wrapper -->
+        <div id="main-wrapper">
 
 
-            <div class="idocs-content">
-                <div class="container">
 
-                    <section id="start">
-                        <h1>Documentazione</h1>
-                        <h2>Nome del progetto</h2>
-                        <p class="lead">Qui va una breve descrizione.</p>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><strong>Classe/Anno:</strong> 5XXX - 24/25</li>
-                                    <li><strong>Author:</strong> Studente1, studente2, studente3</li>
-                                </ul>
+            <!-- Content -->
+            <div id="content" role="main">
+
+                <!-- Sidebar Navigation -->
+                <div class="idocs-navigation bg-dark docs-navigation-dark">
+                    <ul class="nav flex-column ">
+                        <li class="nav-item"><a class="nav-link active" href="#start">Inizio</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#architettura_informazione">Architettura
+                                informazione</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#UML">UML</a>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#umlcasiduso">Casi d'uso</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#umloggetti">Oggetti</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#umlstato">Stato</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#umlsequenza">Sequenza</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#contenuti">Contenuti</a>
+
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#wireframes">Wireframes</a></li>
+
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#progetto">Il progetto</a>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#link">Link al progetto</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="idocs-content">
+                    <div class="container">
+
+                        <section id="start">
+                            <h1>Documentazione</h1>
+                            <h2>Progetto Erasmus+</h2>
+                            <p class="lead">
+                                Obiettivo di questo progetto è la realizzazione di una applicazione web che mostra un
+                                insieme
+                                di punti di interesse su una mappa su Flensburg.
+                                Il progetto Erasmus+ contiene la realizzazione di due applicazioni web identiche nella
+                                struttura,
+                                uno per i luoghi di Milano (i cui contenuti saranno inseriti dagli studenti di Flensburg) ed
+                                uno per Flensburg
+                                (i cui contenuti verrano inseriti dagl'autori sotto citati).
+                                Il layout è analogo ma con colori leggermente diversi in modo da evidenziare le due varianti
+                                del progetto.
+                            </p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-4">
+                                    <ul class="list-unstyled">
+                                        <li><strong>Classe/Anno:</strong> 5°C Informatica - 24/25</li>
+                                        <li><strong>Author:</strong> Angelo Ripamonti, Andrea falcone, Davide Cicoria e
+                                            Marcello Dong</li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6 col-lg-4">
+                                    <ul class="list-unstyled">
+                                        <li><strong class="font-weight-700">Creato:</strong> 07 Gennaio 2025</li>
+                                        <li><strong>Ultima modifica:</strong> 07 gennaio 2025</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><strong class="font-weight-700">Creato:</strong> 16 dicembre 2024</li>
-                                    <li><strong>Ultima modifica:</strong> 20 gennaio 2025</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <hr class="divider">
+                        <hr class="divider">
 
-                    <section id="architettura_informazione">
-                        <h2>Architettura informazione</h2>
-                        <p class="lead">Qui va inserito un diagramma che rappresenta la struttura delle informazioni del
-                            progetto.</p>
+                        <section id="architettura_informazione">
+                            <h2>Architettura informazione</h2>
+                            <p class="lead">
+                                <b>Struttura dell’applicazione: </b>
+                                L’applicazione mostra un sito web che contiene una pagina “home”
+                                che mostra i punti di interesse di Flensburg sia in "vista mappa"
+                                sia in "vista elenco", oltre ad una descrizione introduttiva dei contenuti.
+                                Al click sul punto di interesse (sia sulla mappa che sull’elenco)
+                                si apre la pagina di dettaglio, che contiene le informazioni in maniera completa.
+                                <br>
+                                Infine ci sarà una pagina di amministrazione che mostrerà l’elenco dei punti di
+                                interesse ed è possibile aggiungerne di nuovi o modificare/cancellare gli esistenti,
+                                questa pagina è accessibile solo tramite login.
+                            </p>
+                            <p>
+                                <b>Contenuti:</b>
+                                I contenuti sono predisposti e realizzati in accordo e con
+                                la supervisione della Profesoressa Genoni, sono previsti 11 punti di interesse.
+                            </p>
+                            <p>
+                                <b>Requisiti tecnici:</b>
+                                L’applicazione è erogata in modalità SPA (Single Page Application) quindi con una sola
+                                pagina
+                                HTML ma URL dinamica definita da un suffisso di pagina che definisce univocamente pagina e
+                                contenuto nel seguente modo:
+                            </p>
+                            <table class="table table-bordered border-black">
+                                <tr>
+                                    <td>#home</td>
+                                    <td>Indica la pagina principale della SPA</td>
+                                </tr>
+                                <tr>
+                                    <td>#detail_{id}</td>
+                                    <td>Indica l’id del punto di interesse </td>
+                                </tr>
+                                <tr>
+                                    <td>#admin</td>
+                                    <td>pagina di amministrazione</td>
+                                </tr>
+                            </table>
+                            <p>
+                                Ogni singolo punto di interesse sarà identificato da un id generato tramite la libreria
+                                "uuid".
+                            </p>
 
-                    </section>
+                        </section>
 
-                    <hr class="divider">
-
-
-                    <section id="UML">
-                        <h2>UML</h2>
-                        <p class="lead">Qui vanno inseriti i vari diagrammi UML</p>
-
-                    </section>
-
-                    <section id="umlcasiduso">
-                        <h2>Diagramma di Casi d'uso</h2>
-                        <p class="lead">Diagramma di casi d'uso non previsto.</p>
+                        <hr class="divider">
 
 
-                    </section>
+                        <section id="UML">
+                            <h2>UML</h2>
+                            <p class="lead">Qui vanno inseriti i vari diagrammi UML</p>
 
-                    <section id="umloggetti">
-                        <h2>Diagrammi di oggetti</h2>
-                        <p class="lead">Qui vanno inseriti il diagramma di oggetti (immagini)</p>
+                        </section>
 
-                    </section>
+                        <section id="umlcasiduso">
+                            <h2>Diagramma di Casi d'uso</h2>
+                            <p class="lead">Diagramma di casi d'uso non previsto.</p>
 
-                    <section id="umlstato">
-                        <h2>Diagrammi di Stato</h2>
-                        <p class="lead">Qui vanno inseriti i diagrammi di stato (immagini). </p>
 
-                    </section>
+                        </section>
 
-                    <section id="umlsequenza">
-                        <h2>Diagrammi di Sequenza</h2>
-                        <p class="lead">Qui vanno inserito il diagrammi di sequenza (immagini)</p>
+                        <section id="umloggetti">
+                            <h2>Diagrammi di oggetti</h2>
+                            <figure>
+                                <img src="/assets/images/Diagramma componenti POI.drawio.png" alt="Diagramma Componenti">
+                                <figcaption class="lead">Diagramma di componenti</figcaption>
+                            </figure>
+                        </section>
 
-                    </section>
+                        <section id="umlstato">
+                            <h2>Diagrammi di Stato</h2>
+                            <figure>
+                                <img src="/assets/images/diagramma di stato.png" alt="Diagramma di Stato">
+                                <figcaption class="lead">Diagramma di Stato</figcaption>
+                            </figure>
+                        </section>
 
-                    <hr class="divider">
+                        <section id="umlsequenza">
+                            <h2>Diagrammi di Sequenza</h2>
+                            <figure>
+                                <img src="/assets/images/Diagramma di sequenza POI(Utente).drawio.png"
+                                    alt="Diagramma di Sequenza lato Utente">
+                                <figcaption class="lead">Diagramma di Sequenza lato Utente</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="/assets/images/Diagramma di sequenza POI(Admin).drawio.png"
+                                    alt="Diagramma di Sequenza lato Admin">
+                                <figcaption class="lead">Diagramma di Sequenza lato Admin</figcaption>
+                            </figure>
+                        </section>
 
-                    <section id="contenuti">
-                        <h2>Contenuti del progetto</h2>
-                        <p class="lead">In questa sezione vanno inseriti i contenuti, organizzati in tabella e con un
-                            numero di immagini significative</p>
+                        <hr class="divider">
 
-                    </section>
+                        <section id="contenuti">
+                            <h2>Contenuti del progetto</h2>
 
-                    <hr class="divider">
+                            <table class="table table-striped overflow-auto">
+                                <caption class="table-caption">* Under certain circumstances the price is free. <br>
+                                    ** Price depends on the ticket price.
+                                </caption>
+                                <thead>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Address</th>
+                                    <th>Coords (Lat, Lon)</th>
+                                    <th>Price</th>
+                                    <th>Foto</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Kurt-Tucholsky-Schule (KTS)</td>
+                                        <td class="description">
+                                            <div class="description-container">
 
-                    <section id="wireframes">
-                        <h2>Wireframes</h2>
-                        <p class="lead">In questa sezione vanno inseriti i wireframes o la storyboard di progetto.</p>
+                                                Kurt-Tucholsky è una scuola superiore a Flensburg. Dal 1993 ha il titolo di
+                                                “Scuola Europea”.
+                                                La scuola è stata fondata nel 1973 con una sede temporanea a Husby e pochi
+                                                anni dopo viene spostata
+                                                a Flensburg con il moderno edificio in cemento sulla Richard-Wagner-Straße
+                                                in un ambiente verde.
+                                                Dopo 17 anni come cosiddetta scuola speciale, è stato solo il cambio di
+                                                governo nel 1988 e la
+                                                nuova legge scolastica attuata dal nuovo governo statale SPD nel 1990 che
+                                                hanno permesso di
+                                                classificarla come scuola normale . All'inizio dell'anno scolastico 2010/11,
+                                                la Kurt
+                                                Tucholsky School è ufficialmente una scuola comunitaria. Nel 1993 gli fu
+                                                dato il nome
+                                                Kurt Tucholsky. L'iniziativa venne da Marco Kühnert, all'epoca studente, nel
+                                                1990/91.
+                                                Dopo lunghi dibattiti interni alla scuola, il consiglio scolastico ha deciso
+                                                di dare
+                                                il nome contro la volontà dichiarata della direzione scolastica. Il KTS
+                                                conta
+                                                attualmente 1192 studenti in 50 classi che sono divise in tre rami
+                                                scolastici:
+                                                il ramo scolastico principale (5° - 9° grado), il ramo della scuola
+                                                secondaria
+                                                (5° - 10° grado) e il ramo della scuola superiore ( 5°-10° grado). Il KTS
+                                                offre
+                                                una gamma molto ampia e diversificata di lingue straniere. È possibile
+                                                scegliere
+                                                lo spagnolo come seconda lingua straniera oltre al latino a partire dalla 7a
+                                                elementare.
+                                                La maturità della KTS corrisponde a quella di tutte le altre scuole
+                                                superiori dello Schleswig-Holstein.
+                                            </div>
+                                        </td>
+                                        <td>Richard-Wagner-Straße 41, 24943 Flensburg, Germany</td>
+                                        <td>54.78676223754883, 9.467427253723145</td>
+                                        <td>Free</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/kts.jpg" alt="Kurt-Tucholsky-Schule (KTS)">
+                                                <figcaption>Kurt-Tucholsky-Schule (KTS)</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Hafenspitze</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Il porto di Flensburg, si trova all'estremità del fiordo di
+                                                Flensburg(affacciato sul Mar Baltico)
+                                                e si suddivide in lato ovest, lato est e punta del porto. Sul lato ovest del
+                                                porto si trova anche il porto
+                                                storico, dove c’è il piroscafo Alexandra, uno dei simboli principali di
+                                                Flensburg dove dentro
+                                                c’è anche un museo navale. La vicinanza all'acqua fu la ragione economica
+                                                della fondazione di Flensburg .
+                                                Per secoli il porto rimase un fattore importante per la crescita della
+                                                città, soprattutto grazie al commercio.
+                                                All’inizio la punta del porto si trova molto più verso il sud, ma per colpa
+                                                di fenomeni geologici come l’insabbiamento,
+                                                la punta si è spostata più verso nord. Ad oggi, il porto è ancora attivo con
+                                                scarico e carico di merci, tra la Germania
+                                                e la Danimarca. Oltre ad essere il centro di queste attività commerciali, il
+                                                porto è anche una meta per molti turisti, il
+                                                cui possono passeggiare lungo le banchine, godersi la vista sul mare e
+                                                vedere le navi da crociera o mangiare qualcosa di
+                                                tipico siccome sul porto ci sono anche ristoranti e bar. Nel porto ci sono
+                                                anche diversi tipi di navi come: la vela, yacht
+                                                classici, navi a vapore e a motore. Il porto è collegato al centro storico
+                                                di Flensburg, con le sue strade acciottolate,
+                                                i negozi, i ristoranti e gli edifici storici. Passeggiando lungo il porto,
+                                                si può accedere facilmente a queste zone pittoresche,
+                                                che offrono una combinazione di architettura tradizionale e cultura locale.
+                                            </div>
+                                        </td>
+                                        <td>Am Kanalschuppen, 24937 Flensburg, Germany</td>
+                                        <td>54.7888678, 9.4373556</td>
+                                        <td>Free</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Hafenspitze.jpg" alt="Hafenspitze">
+                                                <figcaption>Hafenspitze</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Deutsches Haus venues GmbH</td>
+                                        <td class="description">
+                                            <div class="description-container">
+
+                                                La Deutsches Haus è un luogo di ritrovo a Flensburg per concerti,
+                                                congressi, fiere, balli ed esposizioni di tutti gli stili. Fu costruito
+                                                negli anni
+                                                '20 ed è oggi uno dei monumenti culturali della città. L'edificio storico
+                                                ospita
+                                                da molti anni il cinema: 51 gradini e dispone di circa 1.500 m².
+                                                Eventualmente per
+                                                eventi e’ presente uno spazio anche oltre i 1.000 m². Per gli eventi nella
+                                                Sala Grande,
+                                                un massimo di 1.448 ospiti possono essere ospitati, 610 dei quali a livello.
+                                                Inoltre,
+                                                possono essere forniti ulteriori 150 posti in piedi. Le sedie in platea
+                                                possono essere
+                                                rimosse, in modo da rendere possibile una varietà di eventi: dai concerti in
+                                                piedi ai ricevimenti
+                                                e agli eventi di gala ai tavoli. Inoltre, sono disponibili tre sale laterali
+                                                con posti a sedere
+                                                individuali per completare lo spazio. In questo posto sono presenti numerose
+                                                esposizioni, fiere ed
+                                                eventi, di conseguenza questo posto, in base al momento dell’anno e alle
+                                                fiere presenti al momento
+                                                della visita, puo’ essere una tappa carina da visitare. Inoltre essendo un
+                                                posto generalmente pubblico
+                                                è possibile socializzare con la gente del posto e ascoltare concerti, film o
+                                                addirittura vedere partite
+                                                di pallamano tutti insieme.
+                                            </div>
+                                        </td>
+                                        <td>Berliner Platz 1, 24937 Flensburg, Germany</td>
+                                        <td>54.780355, 9.4380613</td>
+                                        <td>**</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/GmbH.jpg" alt="Deutsches Haus venues GmbH">
+                                                <figcaption>Deutsches Haus venues GmbH</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>St. Nikolai Kirche zu Flensburg der Ev.-Luth. St. Nikolai-Kirchengemeinde
+                                            Flensburg</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                La chiesa di San Nikolai (considerato il patrono dei marinai, dei mercanti,
+                                                dei bambini e degli affamati)
+                                                è una delle principali chiese di Flensburg ed è situata nel centro storico
+                                                più recente dei quattro presenti,
+                                                vicino al municipio della città. La chiesa è dedicata a Nikolaus von Myra e
+                                                la sua costruzione venne iniziata nel
+                                                1390 per poi essere messa in pausa ed essere ripresa nel 1440. È una chiesa
+                                                in stile gotico in
+                                                mattoni lunga 52 metri e larga 21, composta da 3 navate e 7 campate. Il
+                                                campanile è il più alto di Flensburg
+                                                e uno dei più alti dello Schleswig-Holstein. La guglia venne riscotruita
+                                                dopo che un fulmine la distrusse
+                                                nel 1878. Nella chiesa è presente un doppio oragano, unico al mondo per la
+                                                sua forma.
+                                                La biblioteca della chiesa venne fondata dal pastore Sebastian Schröder ed è
+                                                posta sopra l’ingresso sud,
+                                                nella sua posizione originale. La chiesa è aperta tutti i giorni della
+                                                settimana, offrendo una fascia
+                                                oraria molto ampia; ciò la rende un ottimo posto da visitare se si è in
+                                                cerca di luoghi legati alla
+                                                religione che abbiano una storia che va indietro nel tempo di diversi
+                                                secoli. Inoltre, per chi fosse
+                                                impossibilitato ad andarci di persona, è disponibile una guida virtuale
+                                                online della chiesa.
+                                            </div>
+                                        </td>
+                                        <td>Nikolaikirchhof 8, 24937 Flensburg, Germany</td>
+                                        <td>54.783302307128906, 9.435006141662598</td>
+                                        <td>40,-/35,-/30,-/25,-/20,-EUR</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Nikolai.jpg"
+                                                    alt="St. Nikolai Kirche zu Flensburg der Ev.-Luth. St. Nikolai-Kirchengemeinde Flensburg">
+                                                <figcaption>St. Nikolai Kirche zu Flensburg der Ev.-Luth. St.
+                                                    Nikolai-Kirchengemeinde Flensburg</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Museumsberg Flensburg</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Il Museumsberg Flensburg è uno dei più grandi musei dello stato tedesco
+                                                Schleswig-Holstein.
+                                                Venne fondato nel 1876 e venne adibito alle esposizioni sulla storia
+                                                artistica e culturale dell'ex ducato di Schleswig.
+                                                È composto da due palazzi; quello situato a nord appartiene alla Danimarca
+                                                dal 1920.
+                                                La mostra della “Casa Heinrich Sauermann” illustra la storia dell'arte e
+                                                della cultura dal
+                                                1500 al 1900. Gli originali soggiorni contadini e la collezione di mobili
+                                                storici, che conta
+                                                più di 900 pezzi, è una delle più vaste del suo genere in Germania.
+                                                La mostra della “Casa Hans Christiansen” mostra invece l'arte dello
+                                                Schleswig-Holstein
+                                                dal 1900 al 2000. La zona più importante è quella del reparto Art Nouveau
+                                                con le principali
+                                                opere del pittore Hans Christiansen, all'arte espressionista grazie alle
+                                                opere dei pittori Erich Heckel
+                                                ed Emil Nolde e dello scultore Emil Nolde, ed infine all'arte contemporanea
+                                                del nord. Mostre speciali con temi
+                                                mutevoli completano la collezione permanente. Pensiamo che sia un’ottima
+                                                meta turistica per venire a
+                                                contatto con la storia dell’arte tedesca degli ultimi 500 anni, potendo
+                                                confrontare le opere di diversi
+                                                pittori e scultori. Il museo offre anche la possibilità di svolgere attività
+                                                di apprendimento per
+                                                classi di studenti di ogni livello, presentando attività laboratoriali sugli
+                                                artisti le cui opere sono esposte all’interno del museo.
+                                            </div>
+                                        </td>
+                                        <td>Museumsberg 1, 24937 Flensburg, Germany</td>
+                                        <td>54.7857506, 9.4317528</td>
+                                        <td>8 EUR</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Museumsberg.jpg" alt="Museumsberg Flensburg">
+                                                <figcaption>Museumsberg Flensburg</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Christiansenpark</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Il Christiansen Park di Flensburg è uno dei luoghi più suggestivi
+                                                della città,in la bellezza naturale e storia locale si incontrano. Situato
+                                                nel cuore di Flensburg,
+                                                il parco è famoso per i suoi grossi giardini, i lunghi percorsi ombreggiati
+                                                e l’atmosfera tranquilla.
+                                                Uno degli elementi più caratteristici è il laghetto centrale, circondato da
+                                                una folta fauna che comprende
+                                                alberi secolari e tamerici. Qui si possono osservare diversi animali tipo:
+                                                le anatre e cigni, rendendo il parco
+                                                una meta ideale per famiglie, amanti della natura e chi e' in cerca di un
+                                                posto tranquillo. I sentieri che si
+                                                diramano tra prati e boschetti vicini offrono diverse opportunità per
+                                                passeggiate, jogging o picnic. Il parco porta
+                                                il nome di Christian Christiansen, un filantropo locale che ha contribuito
+                                                alla sua realizzazione, e ospita occasionalmente
+                                                eventi culturali, concerti e mercatini. La posizione centrale lo rende
+                                                facilmente accessibile, un luogo perfetto per staccare
+                                                dalla routine cittadina e immergersi nella serenità della natura.
+                                            </div>
+                                        </td>
+                                        <td>24937 Flensburg, Germany</td>
+                                        <td>54.7851333, 9.4275539</td>
+                                        <td>Free</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/christiansenpark.jpg" alt="Christiansenpark">
+                                                <figcaption>Christiansenpark</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>St. Marien Kirche</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                St. Marien Kirche, è la più antica chiesa luterana-evangelista situata
+                                                vicino al porto di Flensburg.
+                                                La chiesa è caratterizzata da numerosi tesori d’arte e imponenti vetrate.
+                                                Nel seminterrato, sono collocate le figure degli apostoli Pietro e Paolo.
+                                                Pietro, a sinistra, tiene in mano
+                                                la chiave del regno dei cieli, Paolo porta come attributo la spada , che può
+                                                essere vista come segno
+                                                di difesa della fede e indica anche la sua morte per decapitazione.
+                                                Il piano principale è diviso in tre campi pittorici, con il campo centrale
+                                                più largo dei due lati
+                                                e il quadro principale che mostra l' Ultima Cena basato su un'incisione di
+                                                Johann Sadeler.
+                                                Le due superfici laterali contengono ciascuna due immagini quadrate di medie
+                                                dimensioni disposte una
+                                                sopra l'altra, ciascuna delle quali è circondata da una cornice di 16
+                                                piccole immagini. Il piano superiore
+                                                è dominato dal dipinto dell'Adorazione dei pastori. È fiancheggiato da due
+                                                statue di donne, quella di sinistra
+                                                simboleggia la speranza con un'ancora e un uccello e quella di destra
+                                                simboleggia la fede con una croce e placche
+                                                di comandamenti. All’interno della chiesa sono stati conservati numerosi
+                                                artefatti medievali risalenti all’epoca gotica.
+                                            </div>
+                                        </td>
+                                        <td>Marienkirchhof 7, 24937 Flensburg, Germany</td>
+                                        <td>54.7896917, 9.4328838</td>
+                                        <td>8 EUR</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Marien Kirche.jpg" alt="St. Marien Kirche">
+                                                <figcaption>St. Marien Kirche</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Braasch Rum & Rum Manufaktur Museum</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Bottiglie storiche, francobolli passati, macchinari, fotografie, testi,
+                                                resoconti di viaggio:
+                                                questi sono tutti gli oggetti presenti all'interno del museo che già nel
+                                                2000 ha iniziato con
+                                                mostre private riguardanti il rum del distillatore Walter Braasch. Anno dopo
+                                                anno, il museo prese piu’
+                                                popolarità fino a quando ad un certo punto era troppo piccolo per il
+                                                crescente interesse per la storia del
+                                                rum di Flensburg. Di conseguenza, la famiglia Braasch ha deciso di
+                                                ristrutturare e ampliare il museo la cui
+                                                architettura moderna si fonde quasi invisibilmente con le mura storiche. Nel
+                                                luglio 2014, il museo è stato riaperto
+                                                da Walter e Karsten Braasch e da allora offre una panoramica del commercio
+                                                triangolare transatlantico, della storia
+                                                del rum di Flensburg e della produzione e produzione di zucchero e rum. È
+                                                possibile accedere al primo del museo attraversando
+                                                due cortili, un corridoio a sinistra della casa o direttamente attraverso il
+                                                negozio. Nel 2° cortile, una grande mappa del mondo
+                                                ti dà il benvenuto all'esterno, che ti offre una prima panoramica del
+                                                commercio delle Indie occidentali. Al piano seminterrato
+                                                si scopre come è stato cercato lo zucchero e come è stato trovato il rum.
+                                                Qui si può vedere una vera distilleria e conoscere i
+                                                "tre små øer", le ex colonie danesi. Avrai una panoramica della produzione
+                                                di rum e del lato oscuro del commercio triangolare
+                                                transatlantico. Infine al piano di sopra ogni 15 minuti mostriamo le
+                                                immagini di un viaggio alle odierne Isole Vergini americane –
+                                                le isole di St. John, St. Thomas e St. Croix.
+                                            </div>
+                                        </td>
+                                        <td>Rote Str. 26-28, 24937 Flensburg, Germany</td>
+                                        <td>54.7813982, 9.435514</td>
+                                        <td>Free</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/rum.jpg" alt="Braasch Rum & Rum Manufaktur Museum">
+                                                <figcaption>Braasch Rum & Rum Manufaktur Museum</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Alter Kaufmannhof</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Alter Kaufmannhof e’ un complesso edilizio presente in uno dei cortili
+                                                mercantili di Flensburg del XVIII secolo meglio conservati. Tutti gli
+                                                edifici furono costruiti nel 1770 circa; la facciata fu rifatta all'inizio
+                                                del XIX secolo.
+                                                Nell’edificio vivevano delle famiglie di mercanti. Al lato nord c’era la
+                                                cucina, ulteriori camere
+                                                e magazzini. Dal lato opposto c'erano le stalle. A est il cortile è
+                                                circondato da un magazzino realizzato
+                                                nel 1716 con sistema di passaggio e ascensore, nel quale si trovavano altri
+                                                magazzini e altre stalle. Nella fattoria
+                                                si trovava una delle più antiche distillerie di grappa della città: qui è
+                                                stato prodotto per la prima volta il
+                                                “Bommerlunder”. Nel 1974 l'azienda agricola era in pessime condizioni e in
+                                                gran parte inutilizzata. Il bacino trasversale
+                                                situato vicino al porto mostrava segni di grave cedimento. Sebbene all'epoca
+                                                la struttura si trovasse al di fuori della prima
+                                                area predestinata alla ristrutturazione del centro storico di Flensburg, si
+                                                decise comunque di prepararsi per la ristrutturazione.
+                                                In Danimarca esiste una lunga e ininterrotta tradizione di ristrutturazione
+                                                di vecchi edifici. Durante la ristrutturazione del
+                                                Kaufmannshof nel 1975-76 furono creati 12 appartamenti e un negozio. Il
+                                                successo di questa prima ristrutturazione di una grande
+                                                azienda agricola mercantile ha avuto un effetto positivo per il percorso di
+                                                rinnovamento urbano in corso a Flensburg. Grazie a
+                                                questa storia il Kaufmannshof è rimasto fino ad oggi un simbolo, inoltre è
+                                                ancora una vetrina di riqualificazione urbana.
+                                            </div>
+                                        </td>
+                                        <td>Norderstraße 86, 24939 Flensburg, Germany</td>
+                                        <td>54.7936867, 9.4315582</td>
+                                        <td>Free</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Alter Kaufmannhof.jpg" alt="Alter Kaufmannhof">
+                                                <figcaption>Alter Kaufmannhof</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Flensburger Schifffahrtsmuseum</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Flensburg, oggi situata all'estremo nord dello Schleswig-Holstein, è
+                                                un'antica città portuale.
+                                                Nel Museo si può imparare tutto sul porto e sui cantieri mercantili, sulle
+                                                navi militari e mercanti,
+                                                sui cantieri navali, sulle corde e le manovre, sulle macchine e sui motori,
+                                                sui macchinisti e sui capitani e
+                                                sulla loro vita quotidiana in mare. Nel museo sono presenti diverse visite
+                                                interessanti, ecco alcune:
+                                                Tecnologia Marina, in quanto spazi mobili di lavoro e di vita, le navi sono
+                                                determinate dalla tecnologia
+                                                in tutto e per tutto. Motore a vapore e motore diesel, radio e GPS,
+                                                attrezzatura di ricarica e computer di
+                                                ricarica, luce elettrica e aria condizionata. In questa mostra si potra’
+                                                scoprire come le innovazioni tecniche
+                                                hanno cambiato la nautica e le sue professioni negli ultimi 150 anni. Porto
+                                                e Cortili, In questa mostra
+                                                si possono conoscere i mercanti, i capitani, gli armatori che grazie alla
+                                                loro energia e spirito
+                                                imprenditoriale sono riusciti a fornire abbastanza capitale per lo sviluppo
+                                                della citta’ commerciale
+                                                marittima oggi nota come Flensburg. Spedizione Fiordi, La navigazione sui
+                                                fiordi
+                                                è la crociera del piccolo popolo. Nel suo periodo di massimo splendore prima
+                                                della
+                                                Prima Guerra Mondiale, la flotta di piroscafi sui fiordi ha plasmato il
+                                                porto di Flensburg con il suo vivace traffico
+                                                di passeggeri e merci. Le escursioni estive si sono trasformate in
+                                                un'attività di svago generale. Mentre altrove
+                                                si prendeva il trenino "in campagna", a Flensburg si prendeva il battello.
+                                                In questa mostra si potrà scoprire il meccanismo dietro.
+                                            </div>
+                                        </td>
+                                        <td>Schiffbrücke 39, 24939 Flensburg, Germany</td>
+                                        <td>54.7930556, 9.4331606</td>
+                                        <td>8* EUR</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/Schifffahrtsmuseum.jpg"
+                                                    alt="Flensburger Schifffahrtsmuseum">
+                                                <figcaption>Flensburger Schifffahrtsmuseum</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>PHÄNOMENTA</td>
+                                        <td class="description">
+                                            <div class="description-container">
+                                                Cosa rappresenta MINT? Rappresenta un acronimo che sta per Matematica,
+                                                Informatica, Scienze Naturali e Tecnologia.
+                                                Eppure secondo un sondaggio del 2022, solo un tedesco su due lo sa. Per
+                                                rendere questi ambiti più accessibili e affascinanti,
+                                                centri scientifici come PHÄNOMENTA a Flensburg offrono esperienze
+                                                interattive che vanno oltre il tradizionale approccio “nerd”.
+                                                Fondato nel 1985, PHÄNOMENTA è stato il primo centro scientifico pratico in
+                                                Germania e oggi è una delle mete più visitate del
+                                                fiordo di Flensburg. Con oltre 170 stazioni interattive, i visitatori
+                                                possono esplorare fenomeni scientifici osservando,
+                                                sperimentando e scoprendo le reazioni alle loro azioni.
+                                                Ispirare curiosità e passione per la scienza in persone di tutte le età. Dai
+                                                13 ai 73 anni, che siate
+                                                in famiglia, con amici o colleghi, c’è sempre qualcosa da scoprire. In un
+                                                mondo sempre più digitale,
+                                                le esperienze tattili offrono equilibrio, stimolano le capacità cognitive e
+                                                motorie, e accendono l’interesse per
+                                                carriere scientifiche.
+                                                Un’esposizione interattiva in cui toccare, provare e sperimentare sono
+                                                incoraggiati.
+                                                Manovelle da girare, pedali da spingere, puzzle da risolvere e giochi di
+                                                luce, specchi
+                                                e colori da esplorare. Ti aspettano aree come:
+                                                I classici;
+                                                La sala della luce;
+                                                Moto rotazionale;
+                                                Puzzle e combinazione;
+                                                Specchi e illusioni visive;
+                                                Sensi e inganni;
+                                                Un mare di colori.
+                                            </div>
+                                        </td>
+                                        <td>Norderstraße 157-163, 24939 Flensburg, Germany</td>
+                                        <td>54.7953852, 9.4301531</td>
+                                        <td>14 EUR</td>
+                                        <td>
+                                            <figure>
+                                                <img src="/assets/images/PHÄNOMENTA.jpg" alt="PHÄNOMENTA">
+                                                <figcaption>PHÄNOMENTA</figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </section>
+
+                        <hr class="divider">
+
+                        <section id="wireframes">
+                            <h2>Wireframes</h2>
+                            <iframe width="768" height="432"
+                                src="https://miro.com/app/live-embed/uXjVL1a3eEM=/?moveToViewport=-4069,-1728,9864,7752&embedId=182264240620"
+                                frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write"
+                                allowfullscreen></iframe>
+                        </section>
 
                         <hr class="divider">
 
                         <section id="progetto">
                             <h2>Il progetto</h2>
-                            <p class="lead">In questa sezione vanno inserite ulteriori informazioni aggiuntive (es.
-                                credenziali) ed il link al progetto </p>
+                            <dl>
+                                <dt>Flensburg:</dt>
+                                <dd>
+                                    <ul>
+                                        <li><strong>Username:</strong> admin@flensburg</li>
+                                        <li><strong>Password:</strong> adminSafety@flens123</li>
+                                    </ul>
+                                </dd>
+
+                                <dt>Milano:</dt>
+                                <dd>
+                                    <ul>
+                                        <li><strong>Username:</strong> admin@milan</li>
+                                        <li><strong>Password:</strong> adminSafety@mila123</li>
+                                    </ul>
+                                </dd>
+                            </dl>
 
                             <section id="link">
                                 <h2>Link al progetto</h2>
@@ -172,40 +746,40 @@
 
                             </section>
 
+                    </div>
                 </div>
+
             </div>
+            <!-- Content end -->
+
+            <!-- Footer -->
+            <footer id="footer" class="section bg-dark footer-text-light">
+                <div class="container">
+
+                    <p class="text-center">ITT e LSSA "Molinari" - Milano <a href="progettimolinari.it">Progetti
+                            Molinari</a>. Tutti i diritti riservati</p>
+
+                </div>
+            </footer>
+            <!-- Footer end -->
 
         </div>
-        <!-- Content end -->
+        <!-- Document Wrapper end -->
 
-        <!-- Footer -->
-        <footer id="footer" class="section bg-dark footer-text-light">
-            <div class="container">
+        <!-- Back To Top -->
+        <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i
+                class="fa fa-chevron-up"></i></a>
 
-                <p class="text-center">ITT e LSSA "Molinari" - Milano <a href="progettimolinari.it">Progetti
-                        Molinari</a>. Tutti i diritti riservati</p>
-
-            </div>
-        </footer>
-        <!-- Footer end -->
-
-    </div>
-    <!-- Document Wrapper end -->
-
-    <!-- Back To Top -->
-    <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i
-            class="fa fa-chevron-up"></i></a>
-
-    <!-- JavaScript -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Highlight JS -->
-    <script src="assets/vendor/highlight.js/highlight.min.js"></script>
-    <!-- Easing -->
-    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <!-- Magnific Popup -->
-    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <!-- Custom Script -->
-    <script src="assets/js/theme.js"></script>
-</body>
+        <!-- JavaScript -->
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Highlight JS -->
+        <script src="assets/vendor/highlight.js/highlight.min.js"></script>
+        <!-- Easing -->
+        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <!-- Magnific Popup -->
+        <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+        <!-- Custom Script -->
+        <script src="assets/js/theme.js"></script>
+    </body>
 </html>

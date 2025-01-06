@@ -1,7 +1,7 @@
 {
   "name": "pointofinterest",
   "version": "1.0.0",
-  "description": "Copyright 2024 Angelo Ripamonti, Andrea Falcone, Davide Cicoria e Marcello Dong",
+  "description": "Progetto Erasmus+",
   "main": "src/index.js",
   "scripts": {
     "build": "tailwindcss -i ./assets/css/input.css -o ./dist/assets/css/output.css --watch",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest.git"
+    "url": "git+https://github.com/AngeloRipamonti/POI_5C_CicoriaDongFalconeRipamonti.git"
   },
   "keywords": [
     "js",
@@ -17,14 +17,17 @@
     "css",
     "html",
     "tailwindcss",
-    "iDocs"
+    "iDocs",
+    "flensburg",
+    "milan",
+    "erasmus"
   ],
   "author": "Angelo Ripamonti, Davide Cicoria, Andrea Falcone e Marcello Dong",
   "license": "CC-BY-NC-ND-4.0",
   "bugs": {
-    "url": "https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest/issues"
+    "url": "https://github.com/AngeloRipamonti/POI_5C_CicoriaDongFalconeRipamonti/issues"
   },
-  "homepage": "https://github.com/AngeloRipamonti/5C_CicoriaDongFalconeRipamonti_PointOfInterest#readme",
+  "homepage": "https://github.com/AngeloRipamonti/POI_5C_CicoriaDongFalconeRipamonti#readme",
   "dependencies": {
     "tailwindcss": "^3.4.16",
     "uuid": "^11.0.3"
