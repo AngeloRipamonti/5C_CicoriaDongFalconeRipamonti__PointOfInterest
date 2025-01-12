@@ -1,3 +1,4 @@
+import { createNavigator } from "/src/navigator.js";
 //POI
 document.getElementById("modalInsertAdminButton").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.remove("hidden");
@@ -13,3 +14,5 @@ document.getElementById("modalAdminLogin").onclick = () => {
 document.getElementById("close-modal-Login").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.toggle("hidden");
 }
+
+const navigator = createNavigator(document.getElementsByName("main")[0]);
