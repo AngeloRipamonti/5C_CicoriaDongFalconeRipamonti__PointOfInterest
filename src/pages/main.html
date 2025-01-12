@@ -30,7 +30,7 @@
     </header>
 
     <main>
-        <article id="flensburg" class="mt-16 p-6 bg-gray-50 dark:bg-gray-900">
+        <article id="flensburg" class="mt-16 p-6 bg-gray-50 dark:bg-gray-900 poiPage">
 
             <!-- Admin login page -->
             <div id="adminLoginPage">
@@ -40,8 +40,7 @@
                         <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                             <!-- Modal header -->
-                            <div
-                                class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                     Inser a new location
                                 </h3>
@@ -169,7 +168,7 @@
             </div>
 
         </article>
-        <div id="admin">
+        <article id="admin" class="poiPage">
 
             <!-- Pagina admin -->
             <div id="adminPage">
@@ -272,7 +271,7 @@
                             </table>
                         </div>
                     </div>
-                    <article id="admin">
+                    <div id="admin">
                         <!-- Pagina admin -->
                         <div id="adminPage">
                             <!-- Form Creazione POI -->
@@ -285,13 +284,14 @@
                                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                             <!-- Modal header -->
                                             <div
-                                                class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                                     Inser a new location
                                                 </h3>
                                                 <button type="button"
                                                     class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
                                                     id="close-modal-POI">
+
                                                     <svg class="w-3 h-3" aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 14 14">
@@ -303,8 +303,8 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <div class="p-4 ">
-                                                <form class="space-y-4">
+                                            <div class="p-4 md:p-5">
+                                                <form class="space-y-4" action="#">
                                                     <!-- Name -->
                                                     <div>
                                                         <label for="nameInput"
@@ -362,88 +362,88 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
-                </article>
+                    </div>
+            </div>
 
-                <!-- POI Pages -->
-                <div class="container mx-auto">
-                    <div id="pagina1" class="page">
-                        <div class="flex">
-                            <div class="flex-1">
-                                <img src="/assets/images/kts.jpg" width="500" height="400">
-                            </div>
-                            <div class="flex-1">
-                                <table class="border-collapse border border-slate-400 table-fixed">
-                                    <thead>
-                                        <tr>
-                                            <th class="border border-slate-300 p-2">
-                                                <h2>Title POI</h2>
-                                            </th>
-                                            <th class="border border-slate-300 p-2">
-                                                <h2>Address</h2>
-                                            </th>
-                                            <th class="border border-slate-300 p-2">
-                                                <h2>Coordinates</h2>
-                                            </th>
-                                            <th class="border border-slate-300 p-2">
-                                                <h2>Price</h2>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="border border-slate-300 p-2">
-                                                Kurt-Tucholsky-Schule (KTS)
-                                            </td>
-                                            <td class="border border-slate-300 p-2">
-                                                Richard-Wagner-Straße 41, 24943 Flensburg
-                                            </td>
-                                            <td class="border border-slate-300 p-2">
-                                                54.78676223754883, 9.467427253723145
-                                            </td>
-                                            <td class="border border-slate-300 p-2">
-                                                0 £
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="border border-slate-300 p-2" colspan="4">
-                                                <h2>Description</h2>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td class="border border-slate-300 p-2" colspan="4">
-                                                Kurt-Tucholsky is a high school in Flensburg. Since 1993, it has held
-                                                the title of "European School."
-                                                The school was founded in 1973 with a temporary location in Husby, and a
-                                                few years later it was moved to Flensburg, housed in a modern concrete
-                                                building on Richard-Wagner-Straße in a green environment.
-                                                After 17 years as a so-called special school, it was only the change of
-                                                government in 1988 and the new school law implemented by the new SPD
-                                                state government in 1990 that allowed it to be classified as a regular
-                                                school. At the beginning of the 2010/11 school year, Kurt Tucholsky
-                                                School officially became a community school. In 1993, it was given the
-                                                name Kurt Tucholsky. The initiative came from Marco Kühnert, who was a
-                                                student at the time, in 1990/91. After lengthy internal school debates,
-                                                the school board decided to give the name against the declared will of
-                                                the school administration.
-                                                Currently, KTS has 1,192 students in 50 classes, which are divided into
-                                                three school branches:
 
-                                                The main school branch (grades 5-9)
-                                                The secondary school branch (grades 5-10)
-                                                The high school branch (grades 5-10)
+            <div class="container mx-auto poiPage" id="detail_1">
+                <div id="pagina1" class="page">
+                    <div class="flex">
+                        <div class="flex-1">
+                            <img src="/assets/images/kts.jpg" width="500" height="400">
+                        </div>
+                        <div class="flex-1">
+                            <table class="border-collapse border border-slate-400 table-fixed">
+                                <thead>
+                                    <tr>
+                                        <th class="border border-slate-300 p-2">
+                                            <h2>Title POI</h2>
+                                        </th>
+                                        <th class="border border-slate-300 p-2">
+                                            <h2>Address</h2>
+                                        </th>
+                                        <th class="border border-slate-300 p-2">
+                                            <h2>Coordinates</h2>
+                                        </th>
+                                        <th class="border border-slate-300 p-2">
+                                            <h2>Price</h2>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-slate-300 p-2">
+                                            Kurt-Tucholsky-Schule (KTS)
+                                        </td>
+                                        <td class="border border-slate-300 p-2">
+                                            Richard-Wagner-Straße 41, 24943 Flensburg
+                                        </td>
+                                        <td class="border border-slate-300 p-2">
+                                            54.78676223754883, 9.467427253723145
+                                        </td>
+                                        <td class="border border-slate-300 p-2">
+                                            0 £
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="border border-slate-300 p-2" colspan="4">
+                                            <h2>Description</h2>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-300 p-2" colspan="4">
+                                            Kurt-Tucholsky is a high school in Flensburg. Since 1993, it has held the
+                                            title of "European School."
+                                            The school was founded in 1973 with a temporary location in Husby, and a few
+                                            years later it was moved to Flensburg, housed in a modern concrete building
+                                            on Richard-Wagner-Straße in a green environment.
+                                            After 17 years as a so-called special school, it was only the change of
+                                            government in 1988 and the new school law implemented by the new SPD state
+                                            government in 1990 that allowed it to be classified as a regular school. At
+                                            the beginning of the 2010/11 school year, Kurt Tucholsky School officially
+                                            became a community school. In 1993, it was given the name Kurt Tucholsky.
+                                            The initiative came from Marco Kühnert, who was a student at the time, in
+                                            1990/91. After lengthy internal school debates, the school board decided to
+                                            give the name against the declared will of the school administration.
+                                            Currently, KTS has 1,192 students in 50 classes, which are divided into
+                                            three school branches:
 
-                                                KTS offers a very broad and diverse range of foreign languages. Spanish
-                                                can be chosen as a second foreign language alongside Latin starting from
-                                                7th grade.
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            The main school branch (grades 5-9)
+                                            The secondary school branch (grades 5-10)
+                                            The high school branch (grades 5-10)
+
+                                            KTS offers a very broad and diverse range of foreign languages. Spanish can
+                                            be chosen as a second foreign language alongside Latin starting from 7th
+                                            grade.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </article>
     </main>
     <script type="module" src="/src/index.js"></script>
 </body>

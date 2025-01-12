@@ -9,7 +9,7 @@ const show = (element) => {
 }
 
 export const createNavigator = (parentElement) => {
-    const pages = Array.from(document.querySelectorAll(".ripamontiPageSPA"));
+    const pages = Array.from(document.querySelectorAll(".poiPage"));
 
     const render = () => {
         const url = new URL(document.location.href);
