@@ -121,7 +121,7 @@
                 </div>
 
                 <!-- POI creation page -->
-                <div id="poiCreationPage">
+                <article id="poiCreationPage">
                     <div>
                         <div>
                             <!--Titolo-->
@@ -130,9 +130,11 @@
                             </div>
                             <!--Bottone Modale-->
                             <div>
-                                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  type="button">
+                                <button id="modalInsertAdminButton"
+                                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    type="button">
                                     Add new POI
-                                  </button>
+                                </button>
                             </div>
                         </div>
                         <!--Tabella-->
@@ -286,18 +288,15 @@
                 </div>
             </div>
         </div>
-            <!--Pagina 1-->
+
             <div class="container mx-auto">
                 <div id="pagina1" class="page">
                     <div class="flex">
-                        <!--Parte sinistra pagina (Foto POI)-->
                         <div class="flex-1">
                             <img src="/assets/images/kts.jpg" width="500" height="400">
                         </div>
-                        <!--Parte destra pagina (Tabella relativa al POI)-->
                         <div class="flex-1">
                             <table class="border-collapse border border-slate-400 table-fixed">
-                                <!--Intestazioni tabella POI(Descrizione di ogni dato)-->
                                 <thead>
                                     <tr>
                                         <th class="border border-slate-300 p-2">
@@ -314,7 +313,6 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <!--Dati reali riguardante il POI-->
                                 <tbody>
                                     <tr>
                                         <td class="border border-slate-300 p-2">
@@ -330,13 +328,11 @@
                                             0 £
                                         </td>
                                     </tr>
-                                    <!--Header della descrizione-->
                                     <tr>
                                         <th class="border border-slate-300 p-2" colspan="4">
                                             <h2>Description</h2>
                                         </th>
                                     </tr>
-                                    <!--Descrizione del POI-->
                                     <tr>
                                         <td class="border border-slate-300 p-2" colspan="4">
                                             Kurt-Tucholsky is a high school in Flensburg. Since 1993, it has held the title of "European School."
@@ -344,21 +340,21 @@ The school was founded in 1973 with a temporary location in Husby, and a few yea
 After 17 years as a so-called special school, it was only the change of government in 1988 and the new school law implemented by the new SPD state government in 1990 that allowed it to be classified as a regular school. At the beginning of the 2010/11 school year, Kurt Tucholsky School officially became a community school. In 1993, it was given the name Kurt Tucholsky. The initiative came from Marco Kühnert, who was a student at the time, in 1990/91. After lengthy internal school debates, the school board decided to give the name against the declared will of the school administration.
 Currently, KTS has 1,192 students in 50 classes, which are divided into three school branches:
 
-The main school branch (grades 5-9)
-The secondary school branch (grades 5-10)
-The high school branch (grades 5-10)
+                                                The main school branch (grades 5-9)
+                                                The secondary school branch (grades 5-10)
+                                                The high school branch (grades 5-10)
 
 KTS offers a very broad and diverse range of foreign languages. Spanish can be chosen as a second foreign language alongside Latin starting from 7th grade.
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            
                         </div>
                     </div>
                 </div>
             </div>
     </main>
+    <script type="module" src="/src/index.js"></script>
 </body>
 
 </html>
