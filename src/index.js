@@ -1,4 +1,4 @@
-import { createNavigator } from "/src/navigator.js";
+import { createNavigator } from "/src/scripts/navigator.js";
 //POI
 document.getElementById("modalInsertAdminButton").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.remove("hidden");
