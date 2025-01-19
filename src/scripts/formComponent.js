@@ -41,7 +41,7 @@ export const generateModalForm = (parentElement) => {
             //let values = Object.values(configuration) ;
 
             labels.forEach(e => {
-                html += '<div><label for id="' + e +'" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
+                html += '<div><label for="' + e +'" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
                 + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + '"></div>'
             });
 
@@ -56,8 +56,8 @@ export const generateModalForm = (parentElement) => {
             const submitButton = document.getElementById("submitButton" + idForm) ;
 
             submitButton.onclick = () => {
-                const result = labels.map((name) => {
-                    return document.getElementById(name) ;
+                let result = labels.map((name) => {
+                    return document.getElementById(name).value;
                 })
 
                 submitCallback(result) ;

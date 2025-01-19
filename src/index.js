@@ -1,7 +1,15 @@
-import { createNavigator } from "/src/scripts/navigator.js";
-import { generateMap } from "/src/scripts/mapComponent.js" ;
-import { generateModalForm } from "/src/scripts/formComponent.js" ;
-import { generateFetchComponent } from "./scripts/fetch.js";
+import {
+    createNavigator
+} from "/src/scripts/navigator.js";
+import {
+    generateMap
+} from "/src/scripts/mapComponent.js";
+import {
+    generateModalForm
+} from "/src/scripts/formComponent.js";
+import {
+    generateFetchComponent
+} from "./scripts/fetch.js";
 
 //POI
 document.getElementById("modalInsertAdminButton").onclick = () => {
@@ -11,7 +19,7 @@ document.getElementById("close-modal-POI").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.toggle("hidden");
 }
 
-console.log(document.getElementById("modalAdminLogin")) ;
+console.log(document.getElementById("modalAdminLogin"));
 
 //*Input*
 const loginFormConfig = {
@@ -21,12 +29,12 @@ const loginFormConfig = {
 }
 
 const poiFormConfig = {
-    "name" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
-    "description" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
-    "adress" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
-    "price" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
-    "duration" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
-    "imageLink" : ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"]
+    "name": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "description": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "adress": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "price": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "duration": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "imageLink": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"]
 }
 /*
 *Output*
@@ -49,22 +57,29 @@ const poiFormOutput = {
 
 
 
-const loginModalForm = generateModalForm(document.getElementById("loginModalBody")) ;
-loginModalForm.build(loginFormConfig, "loginForm") ;
+const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
+loginModalForm.build(loginFormConfig, "loginForm");
 loginModalForm.onsubmit(async loginResult => {
     const login = generateFetchComponent();
     await login.build("/config.json", "credential");
-    let loginCheck = await login.login(loginResult[0], loginResult[1]);
+    try {
+        let loginCheck = await login.login(loginResult[0], loginResult[1]);
 
-    if (loginCheck) {
-        if (loginResult[2] === true) {
-            Cookies.set("isLogged", "true", {expires: 365});
+        if (loginCheck) {
+            if (loginResult[2] === true) {
+                Cookies.set("isLogged", "true", {
+                    expires: 365
+                });
+            }
             location.href = "#admin";
+
+        } else {
+            loginModalForm.setStatus("Wrong credentials! Try checking both your username and password");
         }
-    } else {
-        loginModalForm.setStatus("Wrong credentials! Try checking both your username and password") ;
+    } catch (e) {
+        console.error(e);
     }
-}) ;
+});
 
 /*
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody")) ;
@@ -81,7 +96,7 @@ poiCreationModalForm.onsubmit(poiDict => {
 //Login
 document.getElementById("modalAdminLogin").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.remove("hidden");
-    loginModalForm.render() ;
+    loginModalForm.render();
 }
 document.getElementById("close-modal-Login").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.toggle("hidden");
@@ -93,5 +108,3 @@ const navigator = createNavigator(document.getElementsByName("main")[0]);
 //const map = generateMap(document.getElementById("mapContainer")) ;
 //map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
 //map.render() ;
-
-
