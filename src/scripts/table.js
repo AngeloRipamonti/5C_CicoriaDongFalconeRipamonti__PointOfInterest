@@ -1,6 +1,7 @@
 export const createTable = (parentElement) => {
     let tableTitle;
     let backupData = {};
+    let listener;
  
     return {
         build: (title, bkData) => {
@@ -11,7 +12,9 @@ export const createTable = (parentElement) => {
                 console.log(error);
             }
         },
- 
+        setListener: (list)=> {
+            listener = list;
+        }, 
         render: (data) => {
             let finalHtml = ``;   
             let title = `<caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4">` + tableTitle + `</caption>`
@@ -31,7 +34,7 @@ export const createTable = (parentElement) => {
                 </thead>
             `;
  
-            let rows = `<tbody>`;
+            let rows = `<tbody id="`+ tableTitle +`">`;
  
             // Righe
             if (Object.keys(data).length != 0) {
@@ -57,6 +60,10 @@ export const createTable = (parentElement) => {
             finalHtml += title + columns + rows;
  
             parentElement.innerHTML = finalHtml;
+            
+            document.getElementById(tableTitle).addEventListener("click", async function(event){
+                await listener(event);
+            });
         },
     }
 }

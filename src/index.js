@@ -5,11 +5,13 @@ import { generateModalForm } from "/src/scripts/formComponent.js";
 import { generateFetchComponent } from "./scripts/fetch.js";
 import { createTable } from "./scripts/table.js";
 import { generateGeoencoder } from "./scripts/geoencoderComponent.js";
+import { createPage }  from "./scripts/page.js";
 import Cookies from "/node_modules/js-cookie/dist/js.cookie.min.mjs";
 
 // Declare & Initialize variables
 const searcher = document.getElementById("search-bar");
 const navigator = createNavigator(document.getElementsByName("main")[0]);
+const page = createPage(document.getElementsByName("main")[0]);
 const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
 const map = generateMap(document.getElementById("mapContainer"));
@@ -24,7 +26,7 @@ const data = {
       "address": "Richard-Wagner-Straße 41 , 24943 Flensburg, Germany", 
     }
 }
-const geoEncoder = generateGeoencoder() ;
+const geoEncoder = generateGeoencoder();
 //*Input*
 const loginFormConfig = {
     "username": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
@@ -95,6 +97,15 @@ let searchCallback = (originalData, pattern) => {
 };
 
 //COMPONENT CALLBACK
+table.setListener((event)=>{
+    const row = event.target.closest("tr");
+    if(row && row.id){
+       const cells = Array.from(row.children).map(cell => cell.textContent);
+       const href = page.render(id, cells); 
+       location.href = href;
+    } 
+});
+
 poiCreationModalForm.onsubmit(async poiArr => {
     //convert the array returned by the form into a dictionary
     let poiDict = {} ;
