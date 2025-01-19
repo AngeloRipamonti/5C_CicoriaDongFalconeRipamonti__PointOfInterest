@@ -4,6 +4,7 @@ import { generateMap } from "/src/scripts/mapComponent.js";
 import { generateModalForm } from "/src/scripts/formComponent.js";
 import { generateFetchComponent } from "./scripts/fetch.js";
 import { createTable } from "./scripts/table.js";
+import { generateGeoencoder } from "./scripts/geoencoderComponent.js";
 import Cookies from "/node_modules/js-cookie/dist/js.cookie.min.mjs";
 
 // Declare & Initialize variables
