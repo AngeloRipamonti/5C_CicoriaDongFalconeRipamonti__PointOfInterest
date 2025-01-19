@@ -16,6 +16,7 @@ export const createTable = (parentElement) => {
             listener = list;
         }, 
         render: (data) => {
+            console.log(data);
             let finalHtml = ``;   
             let title = `<caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4">` + tableTitle + `</caption>`
  
@@ -61,9 +62,11 @@ export const createTable = (parentElement) => {
  
             parentElement.innerHTML = finalHtml;
             
-            document.getElementById(tableTitle).addEventListener("click", async function(event){
-                await listener(event);
-            });
+            if(listener){
+                document.getElementById(tableTitle).addEventListener("click", async function(event){
+                    await listener(event);
+                });
+            }
         },
     }
 }
