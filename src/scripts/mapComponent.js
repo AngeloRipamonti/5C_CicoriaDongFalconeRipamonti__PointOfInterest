@@ -1,16 +1,26 @@
-export const generateMap = (parentElement) => {
+import { keySelector } from "../utils/keySelector.js";
+
+export const generateMap = (parentElement, pubsub) => {
     let map;
-    let points = [];
+    let points = []; // {name: "KTS", coords: [lat, lon]}
+    const self = this;
     
     return {
-        build: (startCoords) => {
+        build: function (startCoords) {
             map = L.map(parentElement).setView(startCoords, 13);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
+            pubsub.subscribe("getData", (data) => {
+                let smth = keySelector(data.flensburg, ["name", "lat", "lon"]);
+                for(const key in smth){
+                    points.push({ name: smth[key].name, coords: [smth[key].lat, smth[key].lon] });
+                }
+                this.render();
+            });
         },
-        render: () => {
+        render: function () {
             points.forEach((POI) => {
                 if (POI) {
                     const marker = L.marker(POI.coords).addTo(map);
@@ -18,10 +28,7 @@ export const generateMap = (parentElement) => {
                 }
             });
         },
-        addPOI: (infos) => {
-
-        },
-        moveToPOI: (coords) => {
+        moveToPOI: function (coords) {
             map = L.map(parentElement).setView(coords, 16);
         }
     };
