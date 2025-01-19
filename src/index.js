@@ -144,14 +144,12 @@ poiCreationModalForm.onsubmit(async poiArr => {
     poiArr.forEach((element, index) => {
         poiDict[labels[index]] = poiArr[index];
     });
-console.log("uh?")
     if ((poiDict["name"] != undefined || poiDict["name"] != null || poiDict["name"].trim().length > 0) &&
         (poiDict["description"] != undefined || poiDict["description"] != null || poiDict["description"].trim().length > 0) &&
         (poiDict["adress"] != undefined || poiDict["adress"] != null || poiDict["adress"].trim().length > 0) &&
         (poiDict["price"] != undefined || poiDict["price"] != null || poiDict["price"].trim().length > 0) &&
         (poiDict["imageLink"] != undefined || poiDict["imageLink"] != null || poiDict["imageLink"].trim().length > 0)
     ) {
-        console.log("oh?")
 
         poiDict.imageLink = poiDict.imageLink.split(" ");
         let poiCoords = await geoEncoder.encode(poiDict.adress);
@@ -162,7 +160,6 @@ console.log("uh?")
             let data = await cache.getData();
             if (!(data.flensburg[(poiDict["name"].deleteSpace())])) {
                 data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
-                console.log(data);
                 await cache.setData(data);
                 adminTable.render(data.flensburg);
                 document.getElementById("close-modal-POI").click();
