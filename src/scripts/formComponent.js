@@ -49,7 +49,7 @@ export const generateModalForm = (parentElement) => {
             html += '<div id="errorDiv' + idForm + '"></div>' ;
 
             parentElement.innerHTML = html;
-            console.log(html);
+            //console.log(html);
 
             //Creazione del Bottone
             //const submitButton = document.querySelector(values[values.length - 1]) ;

@@ -17,12 +17,13 @@ const data = [
     {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
     {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
 ];
+const geoEncoder = generateGeoencoder() ;
+//*Input*
 const loginFormConfig = {
     "username": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "password": ["password", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "remember-me": ["checkbox", "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"]
 }
-
 const poiFormConfig = {
     "name": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "description": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
@@ -50,10 +51,20 @@ const poiFormOutput = {
 */
 
 //BUILD
-loginModalForm.build(loginFormConfig, "loginForm");
 poiCreationModalForm.build(poiFormConfig, "poiForm");
+loginModalForm.build(loginFormConfig, "loginForm");
 map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
 table.build("List of all poi", data);
+await geoEncoder.build("/config.json", "location") ;
+
+//POI actions
+document.getElementById("modalInsertAdminButton").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.remove("hidden");
+    poiCreationModalForm.render() ;
+}
+document.getElementById("close-modal-POI").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.toggle("hidden");
+}
 
 //RENDER
 map.render() ;
@@ -74,10 +85,29 @@ let searchCallback = (originalData, pattern) => {
 
 
 //COMPONENT CALLBACK
-poiCreationModalForm.onsubmit(poiDict => {
+poiCreationModalForm.onsubmit(async poiArr => {
+    //convert the array returned by the form into a dictionary
+    let poiDict = {} ;
+    let labels = Object.keys(poiFormConfig) ;
+    poiArr.forEach((element, index) => {
+        poiDict[labels[index]] = poiArr[index] ;
+    });
+
     //convert adress into coordinates
+    let poiCoords = await geoEncoder.encode(poiDict.adress) ;
+    console.log(poiCoords) ;
+    poiDict.lat = poiCoords.coords[0] ;
+    poiDict.lon = poiCoords.coords[1] ;
+    console.log(poiDict) ;
 
     //save the dict on the cache
+    const poiCreation = generateFetchComponent();
+    poiCreation.build("/config.json", "cache") ;
+    try {
+
+    } catch (e) {
+
+    }
 });
 
 loginModalForm.onsubmit(async loginResult => {
@@ -113,7 +143,6 @@ document.getElementById("modalAdminLogin").onclick = () => {
 document.getElementById("close-modal-Login").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.toggle("hidden");
 }
-
 //POI
 document.getElementById("modalInsertAdminButton").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.remove("hidden");
@@ -123,7 +152,6 @@ document.getElementById("close-modal-POI").onclick = () => {
 }
 
 //EVENT LISTENER
-
 searcher.addEventListener("input", (event) => {
     const keyword = event.target.value;
     let filteredData = searchCallback(data, keyword);
