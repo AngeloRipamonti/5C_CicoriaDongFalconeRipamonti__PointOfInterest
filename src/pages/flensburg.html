@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/assets/css/output.css">
     <title>Point Of Interest</title>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
 </head>
 
@@ -24,7 +26,7 @@
                 </div>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
                         id="modalAdminLogin">
                         Admin Page
                     </button>
@@ -33,14 +35,11 @@
         </nav>
     </header>
     <main>
-        <!-- Admin login page -->
         <div id="adminLoginPage">
             <div id="authentication-modal-Login" tabindex="2147483647" aria-hidden="true"
                 class="hidden fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
                 <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
-                    <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <!-- Modal header -->
                         <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                 Insert a new location
@@ -56,10 +55,8 @@
                                 <span class="sr-only">Close modal</span>
                             </button>
                         </div>
-                        <!-- Modal body -->
                         <div class="p-4 ">
                             <form class="space-y-4" action="#admin">
-                                <!-- Username -->
                                 <div>
                                     <label for="usernameInput"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
@@ -68,7 +65,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required />
                                 </div>
-                                <!-- Password -->
                                 <div>
                                     <label for="passwordInput"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -77,7 +73,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required />
                                 </div>
-                                <!-- Remember me -->
                                 <div class="flex justify-between">
                                     <div class="flex items-start">
                                         <div class="flex items-center h-5">
@@ -89,9 +84,8 @@
                                             me</label>
                                     </div>
                                 </div>
-                                <!-- Submit -->
                                 <button type="submit"
-                                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                                    class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Login</button>
                             </form>
                         </div>
                     </div>
@@ -100,17 +94,14 @@
         </div>
 
         <article id="flensburg" class="mt-16 p-6 bg-gray-50 dark:bg-gray-900 poiPage">
-
-            <div class="grid grid-cols-2 gap-4">
-                <!--Riga 1-->
-
-                <!--Titolo-->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-600">Flensburg</span>
-                        map.</h1>
+                    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Flensburg</span>
+                        map.
+                    </h1>
                 </div>
-                <!--Search Bar-->
                 <div>
                     <form class="max-w-md mx-auto">
                         <label for="search-bar" class="sr-only">Search</label>
@@ -126,19 +117,14 @@
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search for a POI..." required />
                             <button type="submit"
-                                class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Search</button>
                         </div>
                     </form>
                 </div>
 
-                <!--------------------->
-
-                <!--Riga 2-->
-
-                <!--Mappa-->
                 <style>
-                    #mapContainer{
-                        width: 925px;
+                    #mapContainer {
+                        width: 100%;
                         height: 500px;
                     }
                 </style>
@@ -146,21 +132,16 @@
                     <!-- <img src="/assets/images/Mappa.PNG" alt="Place-holder map" class="w-full rounded-lg shadow-md"> -->
                 </div>
 
-                <!--Tabella-->
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <!--Tabella-->
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <!--Titolo-->
                         <caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4"> List of all
                             POI </caption>
-                        <!--Headers-->
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Title</th>
                                 <th scope="col" class="px-6 py-3">Address</th>
                             </tr>
                         </thead>
-                        <!--Dati-->
                         <tbody>
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -179,35 +160,27 @@
                     </table>
                 </div>
             </div>
-
         </article>
 
         <article id="admin" class="hidden poiPage mt-16">
-            <!-- Pagina admin -->
             <div id="adminPage">
-                <!-- POI creation page -->
                 <article id="poiCreationPage">
                     <div class="grid gap-4 mt-16">
                         <div class="flex justify-between items-center mt-11">
-                            <!--Titolo-->
                             <div class="text-left">
                                 <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Admin Page</h1>
                             </div>
-                            <!--Bottone Modale-->
                             <div class="text-right">
                                 <button id="modalInsertAdminButton"
-                                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    class="block text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
                                     type="button">
                                     Add new POI
                                 </button>
                             </div>
                         </div>
-                        <!--Tabella-->
                         <div>
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <!--Titolo-->
                                 <caption> List of all POI </caption>
-                                <!--Headers-->
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -221,7 +194,6 @@
                                         <th scope="col" class="p-4">Remove</th>
                                     </tr>
                                 </thead>
-                                <!--Dati-->
                                 <tbody>
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -229,44 +201,36 @@
                                         <td class="px-6 py-4 text-left p-0">
                                             <div class="max-h-[150px] overflow-y-auto p-2 text-justify">
                                                 Kurt-Tucholsky is a high school in Flensburg. Since 1993, it has held
-                                                the
-                                                title of "European School."
-                                                The school was founded in 1973 with a temporary location in Husby, and a
-                                                few
-                                                years later it was moved to Flensburg, housed in a modern concrete
-                                                building
-                                                on Richard-Wagner-Straße in a green environment.
-                                                After 17 years as a so-called special school, it was only the change of
-                                                government in 1988 and the new school law implemented by the new SPD
-                                                state
-                                                government in 1990 that allowed it to be classified as a regular school.
-                                                At
-                                                the beginning of the 2010/11 school year, Kurt Tucholsky School
-                                                officially
-                                                became a community school. In 1993, it was given the name Kurt
-                                                Tucholsky.
-                                                The initiative came from Marco Kühnert, who was a student at the time,
-                                                in
-                                                1990/91. After lengthy internal school debates, the school board decided
-                                                to
-                                                give the name against the declared will of the school administration.
-                                                Currently, KTS has 1,192 students in 50 classes, which are divided into
-                                                three school branches:
-
-                                                The main school branch (grades 5-9)
-                                                The secondary school branch (grades 5-10)
-                                                The high school branch (grades 5-10)
-
+                                                the title of "European School." The school was founded in 1973 with a
+                                                temporary location in Husby, and a few years later it was moved to
+                                                Flensburg, housed in a modern concrete building on Richard-Wagner-Straße
+                                                in a green environment. After 17 years as a so-called special school, it
+                                                was only the change of government in 1988 and the new school law
+                                                implemented by the new SPD state government in 1990 that allowed it to
+                                                be classified as a regular school. At the beginning of the 2010/11
+                                                school
+                                                year, Kurt Tucholsky School officially became a community school. In
+                                                1993,
+                                                it was given the name Kurt Tucholsky. The initiative came from Marco
+                                                Kühnert, who was a student at the time, in 1990/91. After lengthy
+                                                internal
+                                                school debates, the school board decided to give the name against the
+                                                declared will of the school administration. Currently, KTS has 1,192
+                                                students in 50 classes, which are divided into three school branches:
+                                                <ul class="list-inside list-disc">
+                                                    <li>The main school branch (grades 5-9)</li>
+                                                    <li>The secondary school branch (grades 5-10)</li>
+                                                    <li>The high school branch (grades 5-10)</li>
+                                                </ul>
                                                 KTS offers a very broad and diverse range of foreign languages. Spanish
-                                                can
-                                                be chosen as a second foreign language alongside Latin starting from 7th
-                                                grade.
+                                                can be chosen as a second foreign language alongside Latin starting from
+                                                7th grade.
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4">Richard-Wagner-Straße 41, 24943 Flensburg, Germany</td>
+                                        <td class="px-6 py-4">Richard-Wagner-Straße 41 , 24943 Flensburg, Germany</td>
                                         <td class="px-6 py-4">54.78676223754883, 9.467427253723145</td>
                                         <td class="px-6 py-4">Free</td>
-                                        <td class="px-6 py-4"><img src="/assets/images/kts.jpg"></td>
+                                        <td class="px-6 py-4"><img src="/assets/images/kts.jpg" class="rounded-lg"></td>
                                         <td class="px-6 py-4"><button type="button"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                         </td>
@@ -281,41 +245,40 @@
                                         <td class="px-6 py-4">
                                             <div class="max-h-[150px] overflow-y-auto p-2 text-justify">
                                                 Flensburg's dock is located on the edge of Flensburg's fjord (which is
-                                                on the
-                                                Baltic Sea) and it's divided in the west side, the east side and the tip
-                                                of it.
-                                                On the west side, where there's also the old dock, there's the
-                                                "Alexandra's steamship",
-                                                which is one of the Flensburg's most important symbols.
+                                                on the Baltic Sea) and it's divided in the west side, the east side and
+                                                the tip
+                                                of it. On the west side, where there's also the old dock, there's the
+                                                "Alexandra's steamship", which is one of the Flensburg's most important
+                                                symbols.
                                                 Its position near the water is the reason of the economic growth of the
-                                                city, and the dock
-                                                helped for many centuries, mostly because of the commerce. At the start
-                                                the dock's tip was
-                                                a lot more towards the south, but, because of natural causes, the tip
-                                                moved a lot towards north.
-                                                Nowadays the dock is still in use for boats' charge and discharge of
-                                                goods between Germany
-                                                and Denmark.
-                                                Flensburg's dock is used not only for commerce, but it's also a popular
-                                                point of interest
-                                                for tourists, where they can walk around and enjoy the sea sight and
-                                                watch cruise ships or eat
-                                                some typical food in the restaurants nearby. In the dock, there are
-                                                often many kinds of boats
-                                                parked that you can see, such as sailboats, yachts, steamboats and
-                                                standard boats.
-                                                The dock is linked to the city centre, with old-style streets, shops,
-                                                restaurants and
-                                                historic buildings. Walking along the dock you can easily access this
-                                                touristic buildings
-                                                where you can experience both the traditional architecture and the local
+                                                city, and the dock helped for many centuries, mostly because of the
+                                                commerce.
+                                                At the start the dock's tip was a lot more towards the south, but,
+                                                because of natural causes, the tip
+                                                moved a lot towards north. Nowadays the dock is still in use for boats'
+                                                charge and discharge of
+                                                goods between Germany and Denmark. Flensburg's dock is used not only for
+                                                commerce, but it's also a popular
+                                                point of interest for tourists, where they can walk around and enjoy the
+                                                sea sight and
+                                                watch cruise ships or eat some typical food in the restaurants nearby.
+                                                In the dock, there are
+                                                often many kinds of boats parked that you can see, such as sailboats,
+                                                yachts, steamboats and
+                                                standard boats. The dock is linked to the city centre, with old-style
+                                                streets, shops,
+                                                restaurants and historic buildings. Walking along the dock you can
+                                                easily access this
+                                                touristic buildings where you can experience both the traditional
+                                                architecture and the local
                                                 culture.
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">Am Kanalschuppen, 24937 Flensburg, Germany</td>
                                         <td class="px-6 py-4">54.7888678, 9.4373556</td>
                                         <td class="px-6 py-4">Free</td>
-                                        <td class="px-6 py-4"><img src="/assets/images/Hafenspitze.jpg"></td>
+                                        <td class="px-6 py-4"><img src="/assets/images/Hafenspitze.jpg"
+                                                class="rounded-lg"></td>
                                         <td class="px-6 py-4"><button type="button"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                         </td>
@@ -329,25 +292,21 @@
                         </div>
                     </div>
 
-                    <!-- Form Creazione POI -->
                     <div id="poiCreationModal">
                         <div id="authentication-modal-POI" tabindex="2147483647" aria-hidden="true"
                             class="hidden fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
                             <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
-                                <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <!-- Modal header -->
                                     <div
                                         class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Inser a new location
+                                            Insert a new location
                                         </h3>
                                         <button type="button"
                                             class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
                                             id="close-modal-POI">
-
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 14 14">
+                                                fill=" none" viewBox="0 0 14 14">
                                                 <path stroke="currentColor" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2"
                                                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -355,10 +314,8 @@
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                     </div>
-                                    <!-- Modal body -->
                                     <div class="p-4 md:p-5">
                                         <form class="space-y-4" action="#admin">
-                                            <!-- Name -->
                                             <div>
                                                 <label for="nameInput"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -367,7 +324,6 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                     required />
                                             </div>
-                                            <!-- Description -->
                                             <div>
                                                 <label for="descriptionInput"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
@@ -376,16 +332,14 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                     required />
                                             </div>
-                                            <!-- Adress -->
                                             <div>
                                                 <label for="adressInput"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adress</label>
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
                                                 <input type="text" name="adressInput" id="adressInput"
-                                                    placeholder="Insert the adress of the POI..."
+                                                    placeholder="Insert the address of the POI..."
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                     required />
                                             </div>
-                                            <!-- Price -->
                                             <div>
                                                 <label for="priceInput"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
@@ -394,7 +348,6 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                     required />
                                             </div>
-                                            <!-- Image -->
                                             <div>
                                                 <label for="imageInput"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
@@ -404,9 +357,8 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                     required />
                                             </div>
-                                            <!-- Submit -->
                                             <button type="submit"
-                                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                                                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Add
                                                 the new POI</button>
                                         </form>
                                     </div>
@@ -414,11 +366,14 @@
                             </div>
                         </div>
                     </div>
+                </article>
+
             </div>
+
         </article>
 
         <article class="mt-16 poiPage hidden" id="detail_1">
-            <div class="grid grid-cols-2 gap-4 m-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-2">
                 <div class="flex justify-center">
                     <picture>
                         <img src="/assets/images/kts.jpg" class="max-w-full h-auto rounded-lg shadow-md"
@@ -427,7 +382,8 @@
                     </picture>
                 </div>
                 <div class="flex-1">
-                    <table class="border-collapse border border-slate-400 w-full table-fixed">
+                    <table class="border-collapse border border-slate-400 w-full ```html
+                    table-fixed">
                         <thead>
                             <tr>
                                 <th class="border border-slate-300 p-3 bg-slate-100 text-left font-semibold text-sm">
@@ -467,27 +423,23 @@
                             <tr>
                                 <td class="border border-slate-300 p-3" colspan="4">
                                     Kurt-Tucholsky is a high school in Flensburg. Since 1993, it has held the
-                                    title of "European School."
-                                    The school was founded in 1973 with a temporary location in Husby, and a few
-                                    years later it was moved to Flensburg, housed in a modern concrete building
-                                    on Richard-Wagner-Straße in a green environment.
+                                    title of "European School." The school was founded in 1973 with a temporary
+                                    location in Husby, and a few years later it was moved to Flensburg, housed in
+                                    a modern concrete building on Richard-Wagner-Straße in a green environment.
                                     After 17 years as a so-called special school, it was only the change of
                                     government in 1988 and the new school law implemented by the new SPD state
                                     government in 1990 that allowed it to be classified as a regular school. At
                                     the beginning of the 2010/11 school year, Kurt Tucholsky School officially
-                                    became a community school. In 1993, it was given the name Kurt Tucholsky.
-                                    The initiative came from Marco Kühnert, who was a student at the time, in
-                                    1990/91. After lengthy internal school debates, the school board decided to
-                                    give the name against the declared will of the school administration.
-                                    Currently, KTS has 1,192 students in 50 classes, which are divided into
-                                    three school branches:
-
+                                    became a community school. In 1993, it was given the name Kurt Tucholsky. The
+                                    initiative came from Marco Kühnert, who was a student at the time, in 1990/91.
+                                    After lengthy internal school debates, the school board decided to give the
+                                    name against the declared will of the school administration. Currently, KTS
+                                    has 1,192 students in 50 classes, which are divided into three school branches:
                                     <ul class="list-inside list-disc">
                                         <li>The main school branch (grades 5-9)</li>
                                         <li>The secondary school branch (grades 5-10)</li>
                                         <li>The high school branch (grades 5-10)</li>
                                     </ul>
-
                                     KTS offers a very broad and diverse range of foreign languages. Spanish can
                                     be chosen as a second foreign language alongside Latin starting from 7th
                                     grade.
@@ -498,6 +450,7 @@
                 </div>
             </div>
         </article>
+
     </main>
     <script type="module" src="/src/index.js"></script>
 </body>
