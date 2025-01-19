@@ -1,29 +1,22 @@
-import {
-    createNavigator
-} from "/src/scripts/navigator.js";
-import {
-    generateMap
-} from "/src/scripts/mapComponent.js";
-import {
-    generateModalForm
-} from "/src/scripts/formComponent.js";
-import {
-    generateFetchComponent
-} from "./scripts/fetch.js";
-
+//Imports
+import { createNavigator } from "/src/scripts/navigator.js";
+import { generateMap } from "/src/scripts/mapComponent.js";
+import { generateModalForm } from "/src/scripts/formComponent.js";
+import { generateFetchComponent } from "./scripts/fetch.js";
 import { createTable } from "./scripts/table.js";
+import Cookies from "/node_modules/js-cookie/dist/js.cookie.min.mjs";
 
-//POI
-document.getElementById("modalInsertAdminButton").onclick = () => {
-    document.getElementById("authentication-modal-POI").classList.remove("hidden");
-}
-document.getElementById("close-modal-POI").onclick = () => {
-    document.getElementById("authentication-modal-POI").classList.toggle("hidden");
-}
-
-console.log(document.getElementById("modalAdminLogin"));
-
-//*Input*
+// Declare & Initialize variables
+const searcher = document.getElementById("search-bar");
+const navigator = createNavigator(document.getElementsByName("main")[0]);
+const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
+const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
+const map = generateMap(document.getElementById("mapContainer"));
+let table = createTable(document.getElementById("points-table"));
+const data = [
+    {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
+    {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
+];
 const loginFormConfig = {
     "username": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "password": ["password", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
@@ -56,11 +49,37 @@ const poiFormOutput = {
 }
 */
 
-
-
-
-const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
+//BUILD
 loginModalForm.build(loginFormConfig, "loginForm");
+poiCreationModalForm.build(poiFormConfig, "poiForm");
+map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
+table.build("List of all poi", data);
+
+//RENDER
+map.render() ;
+table.render(data);
+ 
+//FUNCTIONS
+setTimeout(()=>{
+    console.log("Loading Done!");
+    document.getElementById("spinner").classList.add("hidden");
+    location.href = "#flensburg";
+}, 2000);
+
+let searchCallback = (originalData, pattern) => {
+    return originalData.filter((item) => {
+        return item.Title.toLowerCase().includes(pattern.toLowerCase());
+    });
+};
+
+
+//COMPONENT CALLBACK
+poiCreationModalForm.onsubmit(poiDict => {
+    //convert adress into coordinates
+
+    //save the dict on the cache
+});
+
 loginModalForm.onsubmit(async loginResult => {
     const login = generateFetchComponent();
     await login.build("/config.json", "credential");
@@ -83,17 +102,8 @@ loginModalForm.onsubmit(async loginResult => {
     }
 });
 
-/*
-const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody")) ;
-poiCreationModalForm.build(poiFormConfig, "poiForm") ;
-poiCreationModalForm.render() ;
-poiCreationModalForm.onsubmit(poiDict => {
-    //convert adress into coordinates
 
-    //save the dict on the cache
-});
-*/
-
+//BUTTON CALLBACK
 
 //Login
 document.getElementById("modalAdminLogin").onclick = () => {
@@ -104,35 +114,18 @@ document.getElementById("close-modal-Login").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.toggle("hidden");
 }
 
-const navigator = createNavigator(document.getElementsByName("main")[0]);
+//POI
+document.getElementById("modalInsertAdminButton").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.remove("hidden");
+}
+document.getElementById("close-modal-POI").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.toggle("hidden");
+}
 
-//map component
-const map = generateMap(document.getElementById("mapContainer")) ;
-map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
-map.render() ;
+//EVENT LISTENER
 
-// Table
-const data = [
-    {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
-    {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
-]
-let table = createTable(document.getElementById("points-table"));
- 
-table.build("List of all poi", data);
- 
-let searchCallback = (originalData, pattern) => {
-    return originalData.filter((item) => {
-        return item.Title.toLowerCase().includes(pattern.toLowerCase());
-    });
-};
- 
-const searcher = document.getElementById("search-bar");
- 
 searcher.addEventListener("input", (event) => {
     const keyword = event.target.value;
     let filteredData = searchCallback(data, keyword);
     table.render(filteredData);
 });
- 
- 
-table.render(data);

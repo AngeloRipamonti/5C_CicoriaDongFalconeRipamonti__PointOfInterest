@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/spinner.css">
     <link rel="stylesheet" href="/dist/assets/css/output.css">
     <title>Point Of Interest</title>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -35,6 +36,11 @@
         </nav>
     </header>
     <main>
+        <div id="spinner" class="loader-container">
+            <div class="loader"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+  
         <div id="adminLoginPage">
             <div id="authentication-modal-Login"
                 class="hidden fixed z-max inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
@@ -93,7 +99,7 @@
             </div>
         </div>
 
-        <article id="flensburg" class="mt-16 p-6 bg-gray-50 dark:bg-gray-900 poiPage">
+        <article id="flensburg" class="hidden mt-16 p-6 bg-gray-50 dark:bg-gray-900 poiPage">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
