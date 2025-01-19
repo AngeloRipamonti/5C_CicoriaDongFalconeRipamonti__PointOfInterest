@@ -14,7 +14,7 @@ export function generateFetchComponent() {
             }
         },
 
-        setData: async (data) => {
+        setData: async (value) => {
             if (config[configKey].set == undefined || config[configKey].token == undefined || config[configKey].key == undefined) {
                 throw Error("config errato");
             }
@@ -27,7 +27,7 @@ export function generateFetchComponent() {
                     },
                     body: JSON.stringify({
                         key: config[configKey].key,
-                        value: JSON.stringify(data)
+                        value: JSON.stringify(value)
                     })
                 });
                 const data = await r.json();
