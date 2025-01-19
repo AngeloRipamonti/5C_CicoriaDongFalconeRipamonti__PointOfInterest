@@ -92,13 +92,13 @@ await cache.setData({
 poiCreationModalForm.build(poiFormConfig, "poiForm");
 loginModalForm.build(loginFormConfig, "loginForm");
 map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
-homeTable.build("POI's_Table", data);
+homeTable.build("POI's_Table", keySelector((JSON.parse((await cache.getData())).flensburg), ["title", "adress"]));
 adminTable.build("AdminTable", JSON.parse((await cache.getData())).flensburg)
 await geoEncoder.build("/config.json", "location");
 
 //RENDER
 map.render();
-homeTable.render(data);
+homeTable.render(keySelector((JSON.parse((await cache.getData())).flensburg), ["title", "adress"]));
 adminTable.render(JSON.parse((await cache.getData())).flensburg);
 
 //FUNCTIONS
@@ -121,6 +121,21 @@ let searchCallback = (originalData, pattern) => {
         return result;
     }, {});
 };
+
+function keySelector(dict, keys) {
+    const newDict = {};
+    for (const key in dict) {
+        if (dict.hasOwnProperty(key)) {
+            newDict[key] = {};
+            for (const k in dict[key]) {
+                if (dict[key].hasOwnProperty(k) && keys.includes(k)) {
+                    newDict[key][k] = dict[key][k];
+                }
+            }
+        }
+    }
+    return newDict;
+}
 
 //COMPONENT CALLBACK
 homeTable.setListener((event) => {
