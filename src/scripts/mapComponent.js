@@ -3,7 +3,6 @@ import { keySelector } from "../utils/keySelector.js";
 export const generateMap = (parentElement, pubsub) => {
     let map;
     let points = []; // {name: "KTS", coords: [lat, lon]}
-    const self = this;
     
     return {
         build: function (startCoords) {
