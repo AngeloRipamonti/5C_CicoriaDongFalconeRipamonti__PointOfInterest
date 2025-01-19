@@ -1,22 +1,34 @@
-export const createTable = (parentElement) => {
+import { keySelector } from "../utils/keySelector.js";
+
+export const createTable = (parentElement, pubsub) => {
     let tableTitle;
     let backupData = {};
     let listener;
  
     return {
-        build: (title, bkData) => {
+        build: function (title, bkData) {
             try {
                 tableTitle = title;
                 backupData = bkData;
+                pubsub.subscribe("getData",(data) => {
+                    if(listener) { //homeTable
+                        this.backupData = keySelector(data.flensburg, ["name", "adress"]);
+                        this.render(keySelector(data.flensburg, ["name", "adress"]));
+                    }
+                    else{ //adminTable
+                        backupData = data.flensburg;
+                        this.render(data.flensburg);
+                    }
+                })
             } catch (error) {
                 console.log(error);
             }
         },
-        setListener: (list)=> {
+        setListener: function (list) {
             listener = list;
         }, 
-        render: (data) => {
-            console.log(data);
+        render: function (data) {
+            //console.log(data);
             let finalHtml = ``;   
             let title = `<caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4">` + tableTitle + `</caption>`
  
