@@ -11,6 +11,8 @@ import {
     generateFetchComponent
 } from "./scripts/fetch.js";
 
+import { createTable } from "./scripts/table.js";
+
 //POI
 document.getElementById("modalInsertAdminButton").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.remove("hidden");
@@ -108,3 +110,29 @@ const navigator = createNavigator(document.getElementsByName("main")[0]);
 //const map = generateMap(document.getElementById("mapContainer")) ;
 //map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
 //map.render() ;
+
+// Table
+const data = [
+    {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
+    {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
+]
+let table = createTable(document.getElementById("points-table"));
+ 
+table.build("List of all poi", data);
+ 
+let searchCallback = (originalData, pattern) => {
+    return originalData.filter((item) => {
+        return item.Title.toLowerCase().includes(pattern.toLowerCase());
+    });
+};
+ 
+const searcher = document.getElementById("search-bar");
+ 
+searcher.addEventListener("input", (event) => {
+    const keyword = event.target.value;
+    let filteredData = searchCallback(data, keyword);
+    table.render(filteredData);
+});
+ 
+ 
+table.render(data);
