@@ -14,10 +14,16 @@ const loginModalForm = generateModalForm(document.getElementById("loginModalBody
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
 const map = generateMap(document.getElementById("mapContainer"));
 let table = createTable(document.getElementById("points-table"));
-const data = [
+/*const data = [
     {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
     {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
-];
+];*/
+const data = {
+    "KTS": {
+      "title": "Kurt-Tucholsky-Schule",
+      "address": "Richard-Wagner-Straße 41 , 24943 Flensburg, Germany", 
+    }
+}
 const geoEncoder = generateGeoencoder() ;
 //*Input*
 const loginFormConfig = {
@@ -79,11 +85,14 @@ setTimeout(()=>{
 }, 2000);
 
 let searchCallback = (originalData, pattern) => {
-    return originalData.filter((item) => {
-        return item.Title.toLowerCase().includes(pattern.toLowerCase());
-    });
+    // Ricostruisce il dizionario basandosi sul pattern
+    return Object.keys(originalData).reduce((result, key) => {
+        if (originalData[key].title.toLowerCase().includes(pattern.toLowerCase())) {
+            result[key] = originalData[key];
+        }
+        return result;
+    }, {});
 };
-
 
 //COMPONENT CALLBACK
 poiCreationModalForm.onsubmit(async poiArr => {
@@ -133,9 +142,7 @@ loginModalForm.onsubmit(async loginResult => {
     }
 });
 
-
 //BUTTON CALLBACK
-
 //Login
 document.getElementById("modalAdminLogin").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.remove("hidden");

@@ -1,6 +1,6 @@
 export const createTable = (parentElement) => {
     let tableTitle;
-    let backupData = [];
+    let backupData = {};
  
     return {
         build: (title, bkData) => {
@@ -22,9 +22,9 @@ export const createTable = (parentElement) => {
                     <tr>
             `;
  
-            Object.keys(data.length == 0 ? backupData[0] : data[0]).forEach(key => {
+            Object.keys(Object.keys(data).length == 0 ? backupData[Object.keys(backupData)[0]] : data[Object.keys(data)[0]]).forEach(key => {
                 columns += `<th scope="col" class="px-6 py-3">` + key + `</th>`;
-            }) 
+            });
  
             columns += `
                     </tr>
@@ -34,18 +34,18 @@ export const createTable = (parentElement) => {
             let rows = `<tbody>`;
  
             // Righe
-            if (data.length != 0) {
-                data.forEach(element => {
+            if (Object.keys(data).length != 0) {
+                for (const key in data) {
                     rows += `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">`;
-                    for (const key in element) {
-                        rows += `<td class="px-6 py-4">` + element[key] + `</td>`;
+                    for (const keyj in data[key]) {
+                        rows += `<td class="px-6 py-4">` + data[key][keyj] + `</td>`;
                     }
                     rows += `</tr>`;
-                })
+                }
             } else {
                 rows += `
                 <tr>
-                    <td class="px-6 py-4 text-center">
+                    <td class="px-6 py-4 text-center" colspan=` + Object.keys(backupData[Object.keys(backupData)[0]]).length + `>
                         No data found
                     </td>
                 </tr>
