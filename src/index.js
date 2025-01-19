@@ -107,9 +107,9 @@ document.getElementById("close-modal-Login").onclick = () => {
 const navigator = createNavigator(document.getElementsByName("main")[0]);
 
 //map component
-//const map = generateMap(document.getElementById("mapContainer")) ;
-//map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
-//map.render() ;
+const map = generateMap(document.getElementById("mapContainer")) ;
+map.build([54.78194, 9.43667]) ; //Flensburg as the default position on the map
+map.render() ;
 
 // Table
 const data = [
