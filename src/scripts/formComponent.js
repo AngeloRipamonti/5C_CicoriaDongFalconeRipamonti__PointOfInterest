@@ -42,7 +42,7 @@ export const generateModalForm = (parentElement) => {
 
             labels.forEach(e => {
                 html += '<div><label for="' + e +'" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
-                + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + '"></div>'
+                + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + '" value=""></div>'
             });
 
             html += '<button type="button" id="submitButton' + idForm + '" class=" w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Submit</button></form>'
@@ -57,9 +57,10 @@ export const generateModalForm = (parentElement) => {
 
             submitButton.onclick = () => {
                 let result = labels.map((name) => {
-                    return document.getElementById(name).value;
+                    return document.getElementById(name).value?document.getElementById(name).value:document.getElementById(name).checked ;
                 })
 
+                console.log(result) ;
                 submitCallback(result) ;
             }
             /*

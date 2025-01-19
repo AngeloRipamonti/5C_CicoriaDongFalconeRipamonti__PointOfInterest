@@ -72,7 +72,7 @@ loginModalForm.onsubmit(async loginResult => {
                 });
             }
             location.href = "#admin";
-
+            document.getElementById("close-modal-Login").click() ;
         } else {
             loginModalForm.setStatus("Wrong credentials! Try checking both your username and password");
         }
