@@ -339,7 +339,7 @@ poiEditingModalForm.onsubmit(async poiArr => {
             data.flensburg[currentEditing] = poiDict;
             await cache.setData(data);
             adminTable.render(data.flensburg);
-            document.getElementById("close-modal-POI").click();
+            document.getElementById("close-modal-EditPOI").click();
         } catch (e) {
             console.error(e);
             poiEditingModalForm.setStatus("Cache error, please try again!");
