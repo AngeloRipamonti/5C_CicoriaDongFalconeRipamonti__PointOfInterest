@@ -132,12 +132,12 @@ export const createAdminTable = (parentElement, pubsub) => {
                     html += `<img src="` + img + `" class="rounded-lg"></td>`;
                 })
                 html += `</div></td>
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline admin-editButton">EDIT</button>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-"`+ element + `"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                 </td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">
-                                <button type="button"
-                                    class="font-medium text-red-600 dark:text-red-500 hover:underline admin-removeButton">Remove</button>
+                                <button type="button" id="remove-"`+ element + `"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
                                 </td>
                             </tr>`
             };
@@ -148,17 +148,15 @@ export const createAdminTable = (parentElement, pubsub) => {
                 `;
             parentElement.innerHTML = html;
 
-            document.querySelectorAll(".admin-editButton").forEach(button => {
-                button.onclick = () => {
+            for (const key in listToShow) {
+                document.getElementById(("edit-" + key)).onclick = async () => {
                     console.log("edit")
-                }
-            });
 
-            document.querySelectorAll(".admin-removeButton").forEach(button => {
-                button.onclick = () => {
+                }
+                document.getElementById(("remove-" + key)).onclick = async () => {
                     console.log("remove")
                 }
-            });
+            }
 
         },
         renderFiltered: async function (filtered, data) {
@@ -202,11 +200,11 @@ export const createAdminTable = (parentElement, pubsub) => {
                         html += `<img src="` + img + `" class="rounded-lg"></td>`;
                     })
                     html += `</div></td>
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline admin-editButton">EDIT</button>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-`+element+`"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                 </td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">
-                                <button type="button"
+                                <button type="button" id="remove-`+element+`"
                                     class="font-medium text-red-600 dark:text-red-500 hover:underline admin-removeButton">Remove</button>
                                 </td>
                             </tr>`
@@ -217,17 +215,17 @@ export const createAdminTable = (parentElement, pubsub) => {
                 </table>
             `;
             parentElement.innerHTML = html;
-            document.querySelectorAll(".admin-editButton").forEach(button => {
-                button.onclick = () => {
-                    console.log("edit")
-                }
-            });
+            for (const key in listToShow) {
+                if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
+                    document.getElementById(("edit-" + key)).onclick = async () => {
+                        console.log("edit")
 
-            document.querySelectorAll(".admin-removeButton").forEach(button => {
-                button.onclick = () => {
-                    console.log("remove")
+                    }
+                    document.getElementById(("remove-" + key)).onclick = async () => {
+                        console.log("remove")
+                    }
                 }
-            });
+            }
         },
         build: function () {
             pubsub.subscribe("getData", (data) => {
