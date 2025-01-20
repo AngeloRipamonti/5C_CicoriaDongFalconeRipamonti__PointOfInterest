@@ -92,11 +92,11 @@ export const createHomeTable = (parentElement, pubsub) => {
 };
 
 export const createAdminTable = (parentElement, pubsub) => {
-
+    let fetchComponent;
     return {
         render: async function (data) {
             if (!data) throw new Error("No data to render");
-            let listToShow = data;
+            let listToShow = data.flensburg;
             let html = `
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption class="sticky top-0"> List of all POI </caption>
@@ -154,6 +154,9 @@ export const createAdminTable = (parentElement, pubsub) => {
 
                 }
                 document.getElementById(("remove-" + key)).onclick = async () => {
+                    data.flensburg[key] = undefined;
+                    await fetchComponent.setData(data);
+                    fetchComponent.getData();
                     console.log("remove")
                 }
             }
@@ -162,7 +165,7 @@ export const createAdminTable = (parentElement, pubsub) => {
         renderFiltered: async function (filtered, data) {
             if (!data) throw new Error("No data to render");
             filtered = filtered === " " ? "Flensburg" : filtered;
-            let listToShow = data;
+            let listToShow = data.flensburg;
 
             let html = `
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -200,11 +203,11 @@ export const createAdminTable = (parentElement, pubsub) => {
                         html += `<img src="` + img + `" class="rounded-lg"></td>`;
                     })
                     html += `</div></td>
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-`+element+`"
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-`+ element + `"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                 </td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">
-                                <button type="button" id="remove-`+element+`"
+                                <button type="button" id="remove-`+ element + `"
                                     class="font-medium text-red-600 dark:text-red-500 hover:underline admin-removeButton">Remove</button>
                                 </td>
                             </tr>`
@@ -222,14 +225,18 @@ export const createAdminTable = (parentElement, pubsub) => {
 
                     }
                     document.getElementById(("remove-" + key)).onclick = async () => {
+                        data.flensburg[key] = undefined;
+                        await fetchComponent.setData(data);
+                        fetchComponent.getData();
                         console.log("remove")
                     }
                 }
             }
         },
-        build: function () {
+        build: function (fetchC) {
+            fetchComponent = fetchC;
             pubsub.subscribe("getData", (data) => {
-                this.render(data.flensburg);
+                this.render(data);
             })
         }
     };

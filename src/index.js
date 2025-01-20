@@ -159,7 +159,7 @@ loginModalForm.build(loginFormConfig, "loginForm");
 map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
 
 homeTable.build(page);
-adminTable.build()
+adminTable.build(cache)
 
 await geoEncoder.build("/config.json", "location");
 await credential.build("/config.json", "credential");
@@ -176,7 +176,7 @@ document.getElementById("close-modal-POI").onclick = () => {
 //RENDER
 map.render();
 homeTable.render(keySelector(((await cache.getData()).flensburg), ["name", "adress"]));
-adminTable.render(((await cache.getData()).flensburg));
+adminTable.render(((await cache.getData())));
 
 //FUNCTIONS
 
