@@ -32,7 +32,7 @@ export const createHomeTable = (parentElement, pubsub) => {
 
             for (const key in listToShow) {
                 document.getElementById(key).onclick = async () => {
-                    pageCreator.build(key, listToShow[key]);
+                    pageCreator.build(listToShow[key].hash, listToShow[key]);
                     location.href = "#" + (await pageCreator.render());
                 }
             }
@@ -74,7 +74,7 @@ export const createHomeTable = (parentElement, pubsub) => {
                 if (((listToShow[key].name).toLowerCase()).includes((filtered.toLowerCase()))) {
 
                     document.getElementById(key).onclick = async () => {
-                        pageCreator.build(key, listToShow[key]);
+                        pageCreator.build(listToShow[key].hash, listToShow[key]);
                         location.href = "#" + (await pageCreator.render());
                     }
                 }

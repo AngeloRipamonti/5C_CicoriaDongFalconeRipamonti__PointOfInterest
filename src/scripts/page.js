@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from '/node_modules/uuid/dist/esm-browser/index.js';
-
 export const createPage = (parentElement) => {
     const TEMPLATE_PHOTOGALLERY = `<div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="%URL" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="%ALT">
@@ -106,11 +104,7 @@ export const createPage = (parentElement) => {
             pageID = id;
         },
         render: async () => {
-            const hash = uuidv4();
-            let htmlPage = `<article class="mt-16 poiPage hidden" id="` + ("detail_" + hash) + `">`;
-
-            console.log(hash);
-
+            let htmlPage = `<article class="mt-16 poiPage hidden" id="` + pageID + `">`;
 
             htmlPage += TEMPLATE.replace("%PHOTO_TITLE", poiData.name);
             let imgsHtml = "";
@@ -130,7 +124,7 @@ export const createPage = (parentElement) => {
             htmlPage += `</article>`
 
             parentElement.innerHTML = htmlPage;
-            return "detail_" + hash;
+            return pageID;
         }
     }
 }
