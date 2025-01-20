@@ -38,6 +38,7 @@ const navigator = createNavigator(document.getElementById("main"));
 const page = createPage(document.getElementById("details"));
 const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
+const poiEditingModalForm = generateModalForm(document.getElementById("poiEditModalBody"));
 const map = generateMap(document.getElementById("mapContainer"), pubsub);
 let homeTable = createHomeTable(document.getElementById("points-table"), pubsub);
 const adminTable = createAdminTable(document.getElementById("adminTable"), pubsub);
@@ -50,6 +51,14 @@ const loginFormConfig = {
     "remember-me": ["checkbox", "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"]
 }
 const poiFormConfig = {
+    "name": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "description": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "adress": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "price": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
+    "imageLink": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"]
+}
+
+const poiEditFormConfig = {
     "name": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "description": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "adress": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
@@ -158,6 +167,7 @@ await cache.setData({
 })*/
 poiCreationModalForm.build(poiFormConfig, "poiForm");
 loginModalForm.build(loginFormConfig, "loginForm");
+poiEditingModalForm.build(poiEditFormConfig, "editPoiForm");
 
 map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
 
@@ -168,11 +178,12 @@ adminTable.build(cache)
 //POI actions
 document.getElementById("modalInsertAdminButton").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.remove("hidden");
-    poiCreationModalForm.render();
+    poiCreationModalForm.render(null);
 }
 document.getElementById("close-modal-POI").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.toggle("hidden");
 }
+
 
 //RENDER
 map.render();
@@ -216,15 +227,10 @@ poiCreationModalForm.onsubmit(async poiArr => {
 
         try {
             let data = await cache.getData();
-            if (!(data.flensburg[(poiDict["name"].deleteSpace())])) {
-                data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
-                await cache.setData(data);
-                adminTable.render(data.flensburg);
-                document.getElementById("close-modal-POI").click();
-            } else {
-                poiCreationModalForm.setStatus("POI already exists!");
-                return;
-            }
+            data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
+            await cache.setData(data);
+            adminTable.render(data.flensburg);
+            document.getElementById("close-modal-EditPOI").click();
         } catch (e) {
             console.error(e);
             poiCreationModalForm.setStatus("Cache error, please try again!");
@@ -265,19 +271,12 @@ document.getElementById("modalAdminLogin").onclick = () => {
         return;
     }
     document.getElementById("authentication-modal-Login").classList.remove("hidden");
-    loginModalForm.render();
+    loginModalForm.render(null);
 }
 document.getElementById("close-modal-Login").onclick = () => {
     document.getElementById("authentication-modal-Login").classList.toggle("hidden");
 }
-//POI
-document.getElementById("modalInsertAdminButton").onclick = () => {
-    document.getElementById("authentication-modal-POI").classList.remove("hidden");
-    poiCreationModalForm.render();
-}
-document.getElementById("close-modal-POI").onclick = () => {
-    document.getElementById("authentication-modal-POI").classList.toggle("hidden");
-}
+
 //Zoom Map
 document.getElementById("flyToMap").onclick = () => {
     const srValue = document.getElementById("search-bar").value;
@@ -291,3 +290,69 @@ searcher.addEventListener("input", async (event) => {
     let filteredData = searchCallback(keySelector(((await cache.getData()).flensburg), ["name", "adress"]), keyword);
     homeTable.renderFiltered(keyword, keySelector(((await cache.getData()).flensburg), ["name", "adress"]));
 });
+
+// Edit POI Action
+
+let currentEditing;
+
+const dataFlensburg = (await cache.getData())["flensburg"]
+
+for (const key in (await cache.getData())["flensburg"]) {
+    document.getElementById("edit-" + key).onclick = () => {
+        currentEditing = key;
+        document.getElementById("edit-modal-POI").classList.toggle("hidden");
+        poiEditingModalForm.render({
+            "name": dataFlensburg[key]["name"],
+            "description": dataFlensburg[key]["description"],
+            "adress": dataFlensburg[key]["adress"],
+            "price": dataFlensburg[key]["price"],
+            "imageLink": dataFlensburg[key]["imageLink"],
+        })
+    }
+}
+
+
+poiEditingModalForm.onsubmit(async poiArr => {
+    //convert the array returned by the form into a dictionary
+    let poiDict = {};
+    let labels = Object.keys(poiEditFormConfig);
+    poiArr.forEach((element, index) => {
+        poiDict[labels[index]] = poiArr[index];
+    });
+    if ((poiDict["name"] != undefined || poiDict["name"] != null || poiDict["name"].trim().length > 0) &&
+        (poiDict["description"] != undefined || poiDict["description"] != null || poiDict["description"].trim().length > 0) &&
+        (poiDict["adress"] != undefined || poiDict["adress"] != null || poiDict["adress"].trim().length > 0) &&
+        (poiDict["price"] != undefined || poiDict["price"] != null || poiDict["price"].trim().length > 0) &&
+        (poiDict["imageLink"] != undefined || poiDict["imageLink"] != null || poiDict["imageLink"].trim().length > 0)
+    ) {
+
+        poiDict.imageLink = poiDict.imageLink.split(" ");
+        let poiCoords = await geoEncoder.encode(poiDict.adress);
+        poiDict.lat = poiCoords.coords[0];
+        poiDict.lon = poiCoords.coords[1];
+        const hash = uuidv4();
+        poiDict.hash = "detail_"+hash;
+
+        try {
+            let data = await cache.getData();
+            delete data.flensburg[(poiDict["name"].deleteSpace())];
+            data.flensburg[currentEditing] = poiDict;
+            await cache.setData(data);
+            adminTable.render(data.flensburg);
+            document.getElementById("close-modal-POI").click();
+        } catch (e) {
+            console.error(e);
+            poiEditingModalForm.setStatus("Cache error, please try again!");
+            return;
+        }
+    } else {
+        poiEditingModalForm.setStatus("Some fields is wrong, please try to check all fields and fix the error.");
+        return;
+    }
+});
+
+
+
+document.getElementById("close-modal-EditPOI").onclick = () => {
+    document.getElementById("edit-modal-POI").classList.toggle("hidden");
+}

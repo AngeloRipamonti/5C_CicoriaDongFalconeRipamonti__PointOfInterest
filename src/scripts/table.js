@@ -132,11 +132,11 @@ export const createAdminTable = (parentElement, pubsub) => {
                     html += `<img src="` + img + `" class="rounded-lg"></td>`;
                 })
                 html += `</div></td>
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-"`+ element + `"
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-`+ element + `"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</button>
                                 </td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">
-                                <button type="button" id="remove-"`+ element + `"
+                                <button type="button" id="remove-`+ element + `"
                                     class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
                                 </td>
                             </tr>`
@@ -147,6 +147,14 @@ export const createAdminTable = (parentElement, pubsub) => {
                     </table>
                 `;
             parentElement.innerHTML = html;
+
+            for (const key in listToShow) {
+                document.getElementById("remove-" + key).onclick = async () => {
+                    delete data.flensburg[key];
+                    await fetchComponent.setData(data);
+                    fetchComponent.getData();
+                }
+            }
 /*
             for (const key in listToShow) {
                 document.getElementById(("edit-" + key)).onclick = async () => {
@@ -218,12 +226,10 @@ export const createAdminTable = (parentElement, pubsub) => {
                 </table>
             `;
             parentElement.innerHTML = html;
-            /*
-            for (const key in listToShow) {
+            /*for (const key in listToShow) {
                 if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
                     document.getElementById(("edit-" + key)).onclick = async () => {
                         console.log("edit")
-
                     }
                     document.getElementById(("remove-" + key)).onclick = async () => {
                         data.flensburg[key] = undefined;
@@ -235,6 +241,7 @@ export const createAdminTable = (parentElement, pubsub) => {
             }*/
         },
         build: function (fetchC) {
+
             fetchComponent = fetchC;
             pubsub.subscribe("getData", (data) => {
                 this.render(data);
