@@ -1,6 +1,6 @@
 import { parseConfiguration } from "./jsonParser.js"
 
-export function generateFetchComponent() {
+export function generateFetchComponent(pubsub) {
     let config;
     let configKey;
     return {
@@ -53,7 +53,9 @@ export function generateFetchComponent() {
                     })
                 });
                 const data = await r.json();
-                return data.result;
+                const res = JSON.parse(data.result);
+                pubsub.publish("getData", res);
+                return res;
             } catch (error) {
                 throw error;
             }
@@ -77,6 +79,7 @@ export function generateFetchComponent() {
                 });
                 const data = await r.json();
                 if (data.result === true) {
+                    pubsub.publish("login", true);
                     return true;
                 }
                 else {
