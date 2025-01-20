@@ -102,11 +102,11 @@ export const createPage = (parentElement, pubsub) => {
         build: function (id, poiDict) {
             poiData = poiDict;
             pageID = id;
-            pubsub.subscribe("getData", (data) => {
+            pubsub.subscribe("getData", async (data) => {
                 for(const key in data.flensburg){
                     poiData = data.flensburg[key];
                     pageID = poiData.hash;
-                    this.render();
+                    await this.render();
                 }
             })
         },
