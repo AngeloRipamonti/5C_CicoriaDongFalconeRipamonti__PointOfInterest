@@ -11,7 +11,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 
 </head>
@@ -42,7 +42,7 @@
             <div class="loader"></div>
             <div class="loader-text">Loading...</div>
         </div>
-  
+
         <div id="adminLoginPage">
             <div id="authentication-modal-Login"
                 class="hidden fixed z-max inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
@@ -140,7 +140,9 @@
                     <!-- <img src="/assets/images/Mappa.PNG" alt="Place-holder map" class="w-full rounded-lg shadow-md"> -->
                 </div>
 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div id="points-table"
+                    class="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-h-[70vh] overflow-y-scroll overflow-x-auto ml-[2%] table-fixed">
+                    <!--
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="points-table">
                         <caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4"> List of all
                             POI </caption>
@@ -166,6 +168,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    -->
                 </div>
             </div>
         </article>
@@ -186,9 +189,10 @@
                                 </button>
                             </div>
                         </div>
-                        <div>
-                            <table id="adminTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <!--
+                        <div id="adminTable">
+                            <!--
+                            <table id="" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                
                                 <caption> List of all POI </caption>
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

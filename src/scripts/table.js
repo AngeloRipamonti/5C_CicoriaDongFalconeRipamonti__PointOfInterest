@@ -1,118 +1,219 @@
-import { keySelector } from "../utils/keySelector.js";
+export const createHomeTable = (parentElement, pubsub) => {
 
-export const createTable = (parentElement, pubsub) => {
-    let tableTitle;
-    let backupData = {};
-    let listener;
-    let adminState;
- 
     return {
-        build: function (title, bkData) {
-            try {
-                tableTitle = title;
-                backupData = bkData;
-                pubsub.subscribe("getData",(data) => {
-                    if(listener) { //homeTable
-                        this.backupData = keySelector(data.flensburg, ["name", "adress"]);
-                        this.render(keySelector(data.flensburg, ["name", "adress"]));
-                    }
-                    else{ //adminTable
-                        backupData = data.flensburg;
-                        this.render(data.flensburg);
-                    }
-                })
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        setListener: function (list) {
-            listener = list;
-        }, 
-        render: function(data) {
-            //console.log(data);
-            let finalHtml = ``;   
-            let orderedData = {};
-            let title = `<caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4">` + tableTitle + `</caption>`
+        render: async function (data) {
+            if(!data) throw new Error("No data to render");
+            let listToShow = data;
+            let html = `
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4 sticky top-0"> List of all POI </caption>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 break-words whitespace-normal p-2">Title</th>
+                                <th scope="col" class="px-6 py-3 break-words whitespace-normal p-2">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
 
-            // Colonne
-            let columns = `
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></thead>
-                    <tr>
+            for (const element in listToShow) {
+                html += `<tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><a href="#detail_1"
+                                        class="text-blue-600 dark:text-blue-400 hover:underline">`+ listToShow[element].name + `</a></td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
+                            </tr>`
+            };
+
+            html += `
+                        </tbody>
+                    </table>
+                `;
+            parentElement.innerHTML = html;
+
+        },
+        renderFiltered: async function (filtered, data) {
+            if(!data) throw new Error("No data to render");
+            filtered = filtered === " " ? "Flensburg" : filtered;
+            let listToShow = data;
+
+            let html = `
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <caption class="text-lg font-semibold text-left text-gray-900 dark:text-white p-4 sticky top-0"> List of all POI </caption>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 break-words whitespace-normal p-2">Title</th>
+                                <th scope="col" class="px-6 py-3 break-words whitespace-normal p-2">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            for (const element in listToShow) {
+                if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
+                    html += `<tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><a href="#detail_1"
+                                        class="text-blue-600 dark:text-blue-400 hover:underline">`+ listToShow[element].name + `</a></td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
+                            </tr>`
+                };
+            }
+            html += `
+                    </tbody>
+                </table>
             `;
- 
-            Object.keys(Object.keys(data).length == 0 ? backupData[Object.keys(backupData)[0]] : data[Object.keys(data)[0]]).forEach(key => {
-                columns += `<th scope="col" class="px-6 py-3">` + key + `</th>`;
+            parentElement.innerHTML = html;
+
+        },
+        build: function () {
+            pubsub.subscribe("getData", (data) => {
+                this.render(data.flensburg);
+            })
+        }
+
+    };
+};
+
+export const createAdminTable = (parentElement, pubsub) => {
+
+    return {
+        render: async function (data) {
+            if(!data) throw new Error("No data to render");
+            let listToShow = data;
+            let html = `
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <caption class="sticky top-0"> List of all POI </caption>
+                                <thead
+                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                                    <tr>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Title</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Description</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Address</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Coords</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Price</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Photo</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Edit</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Remove</th>
+                                    </tr>
+                                </thead>
+                        <tbody>`;
+
+            for (const element in listToShow) {
+                html += `<tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].name + `</td>
+                                <td class="px-6 py-4 text-left p-0 break-words whitespace-normal p-2">
+                                    <div class="max-h-[150px] overflow-y-auto p-2 text-justify">
+                                        `+ listToShow[element].description + `
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ parseFloat(listToShow[element].lat).toFixed(2) + ", " + parseFloat(listToShow[element].lon).toFixed(2) + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].price + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><div>`;
+                listToShow[element].imageLink.forEach(img => {
+                    html += `<img src="` + img + `" class="rounded-lg"></td>`;
+                })
+                html += `</div></td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline admin-editButton">EDIT</button>
+                                </td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">
+                                <button type="button"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline admin-removeButton">Remove</button>
+                                </td>
+                            </tr>`
+            };
+
+            html += `
+                        </tbody>
+                    </table>
+                `;
+            parentElement.innerHTML = html;
+
+            document.querySelectorAll(".admin-editButton").forEach(button => {
+                button.onclick = () => {
+                    console.log("edit")
+                }
             });
 
-            // Colonna admin
-            if (adminState) {
-                columns += `<th scope="col" class="px-6 py-3"> Edit </th>`;
-                columns += `<th scope="col" class="px-6 py-3"> Delete </th>`;
-            }
- 
-            columns += `
-                    </tr>
-                </thead>
-            `;
- 
-            let rows = `<tbody id="`+ tableTitle +`">`;
-
-            for (const key in data) {
-                if (key in data) {
-                    let orderedSubbase = {};
-                    for (const keyz in backupData[Object.keys(backupData)[0]]) {
-                        orderedSubbase[keyz] = data[key][keyz];
-                    }
-                    orderedData[key] = orderedSubbase;
+            document.querySelectorAll(".admin-removeButton").forEach(button => {
+                button.onclick = () => {
+                    console.log("remove")
                 }
-            }
+            });
 
- 
-            // Righe
-            if (Object.keys(data).length != 0) {
-                for (const key in orderedData) {
-                    rows += `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">`;
-                    for (const keyj in orderedData[key]) {
-                        rows += `<td class="px-6 py-4">` + orderedData[key][keyj] + `</td>`;
-                    }
-
-                    // Righe admin
-                    if (adminState) {
-                        rows += `
-                            <td class="px-6 py-4"> 
-                                <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Edit</button>
-                            </td>
-                        `;
-                        rows += `
-                            <td class="px-6 py-4">  
-                                <button type="button" id="delete_` + key + `"` + ` class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                            </td>
-                        `;
-                    }
-
-                    rows += `</tr>`;
-                }
-            } else {
-                rows += `
-                <tr>
-                    <td class="px-6 py-4 text-center" colspan=` + (Object.keys(backupData[Object.keys(backupData)[0]]).length + (admin ? 2 : 0)) + `>
-                        No data found
-                    </td>
-                </tr>
-                `;
-            }
- 
-            rows += `</tbody>`;
- 
-            finalHtml += title + columns + rows;
- 
-            parentElement.innerHTML = finalHtml;
-            
-            if(listener){
-                document.getElementById(tableTitle).addEventListener("click", async function(event){
-                    await listener(event);
-                });
-            }
         },
-    }
-}
+        renderFiltered: async function (filtered, data) {
+            if(!data) throw new Error("No data to render");
+            filtered = filtered === " " ? "Flensburg" : filtered;
+            let listToShow = data;
+
+            let html = `
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <caption class="sticky top-0"> List of all POI </caption>
+                                <thead
+                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                                    <tr>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Title</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Description</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Address</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Coords</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Price</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Photo</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Edit</th>
+                                        <th scope="col" class="p-4 break-words whitespace-normal p-2">Remove</th>
+                                    </tr>
+                                </thead>
+                        <tbody>`;
+
+            for (const element in listToShow) {
+                if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
+                    html += `<tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].name + `</td>
+                                <td class="px-6 py-4 text-left p-0 break-words whitespace-normal p-2">
+                                    <div class="max-h-[150px] overflow-y-auto p-2 text-justify">
+                                        `+ listToShow[element].description + `
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ parseFloat(listToShow[element].lat).toFixed(2) + ", " + parseFloat(listToShow[element].lon).toFixed(2) + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].price + `</td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><div>`;
+                    listToShow[element].imageLink.forEach(img => {
+                        html += `<img src="` + img + `" class="rounded-lg"></td>`;
+                    })
+                    html += `</div></td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline admin-editButton">EDIT</button>
+                                </td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2">
+                                <button type="button"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline admin-removeButton">Remove</button>
+                                </td>
+                            </tr>`
+                };
+            }
+            html += `
+                    </tbody>
+                </table>
+            `;
+            parentElement.innerHTML = html;
+            document.querySelectorAll(".admin-editButton").forEach(button => {
+                button.onclick = () => {
+                    console.log("edit")
+                }
+            });
+
+            document.querySelectorAll(".admin-removeButton").forEach(button => {
+                button.onclick = () => {
+                    console.log("remove")
+                }
+            });
+        },
+        build: function () {
+            pubsub.subscribe("getData", (data) => {
+                this.render(data.flensburg);
+            })
+        }
+    };
+};

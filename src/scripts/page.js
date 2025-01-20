@@ -98,29 +98,29 @@ export const createPage = (parentElement) => {
     </div>
 </div>` ;
     let poiData;
-    let pageID ;
+    let pageID;
 
     return {
         build: (id, poiDict) => {
             poiData = poiDict;
-            pageID = id ;
+            pageID = id;
         },
         render: () => {
             const hash = uuidv4();
             let htmlPage = `<div id="` + ("detail_" + hash) + `" class="mt-16 poiPage hidden">`;
 
-            console.log(hash) ;
+            console.log(hash);
 
-            
+
             htmlPage += TEMPLATE.replace("%PHOTO_TITLE", poiData.name);
             let imgsHtml = "";
             poiData.imageLink.forEach((element) => {
                 imgsHtml += TEMPLATE_PHOTOGALLERY.replace("%URL", element);
                 imgsHtml = imgsHtml.replace("%ALT", poiData.name);
             });
-            htmlPage = htmlPage.replace("%ID", pageID) ;
-            htmlPage = htmlPage.replace("%ID_PHOTOGALLERY", pageID) ;
-            htmlPage = htmlPage.replace("%PHOTOGALLERY_CONTENT", imgsHtml) ;
+            htmlPage = htmlPage.replace("%ID", pageID);
+            htmlPage = htmlPage.replace("%ID_PHOTOGALLERY", pageID);
+            htmlPage = htmlPage.replace("%PHOTOGALLERY_CONTENT", imgsHtml);
             htmlPage = htmlPage.replace("%POI_TITLE", poiData.name);
             htmlPage = htmlPage.replace("%ADRESS", poiData.adress);
             htmlPage = htmlPage.replace("%POI_LATITUDE", poiData.lat);
@@ -128,7 +128,7 @@ export const createPage = (parentElement) => {
             htmlPage = htmlPage.replace("%POI_PRICE", poiData.price);
             htmlPage = htmlPage.replace("%POI_DESCRIPTION", poiData.description);
             htmlPage += `</div>`
-            
+
             parentElement.innerHTML = htmlPage;
             return "detail_" + hash;
         }

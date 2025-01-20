@@ -2,8 +2,8 @@ import { parseConfiguration } from "./jsonParser.js"
 
 export const generateGeoencoder = () => {
     let data = {};
-    let config ;
-    let configKey ;
+    let config;
+    let configKey;
     return {
         build: async (pathConfig, keyConfig) => {
             try {
@@ -25,12 +25,12 @@ export const generateGeoencoder = () => {
                     data.name = json[0].display_name;
                     data.coords = [json[0].lat, json[0].lon];
                     //console.log(data) ;
-                    return data ;
+                    return data;
                 } else {
                     throw Error(json.error);
                 }
             } catch (error) {
-                throw error ;
+                throw error;
             }
         }
     }

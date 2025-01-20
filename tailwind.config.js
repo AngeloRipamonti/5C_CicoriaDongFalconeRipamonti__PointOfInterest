@@ -7,7 +7,7 @@ module.exports = {
     theme: {
       extend: {
         zIndex:{
-          "max": "2147483647"
+          max: "2147483647"
         },
         colors: {
           background: '#1f2937',  // Scuro

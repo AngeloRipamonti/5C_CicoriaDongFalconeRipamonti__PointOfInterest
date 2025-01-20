@@ -60,7 +60,7 @@ export function generateFetchComponent(pubsub) {
                 throw error;
             }
         },
-        
+
         login: async (username, password) => {
             if (config[configKey].login == undefined || config[configKey].token == undefined) {
                 throw Error("config errato");
@@ -93,7 +93,7 @@ export function generateFetchComponent(pubsub) {
             if (config[configKey].register == undefined || config[configKey].token == undefined) {
                 throw Error("config errato");
             }
-            try{
+            try {
                 const r = await fetch(config[configKey].register, {
                     method: "POST",
                     headers: {
@@ -107,7 +107,7 @@ export function generateFetchComponent(pubsub) {
                 });
                 const data = await r.json();
                 return data;
-            }catch (error) {
+            } catch (error) {
                 throw error;
             }
         }

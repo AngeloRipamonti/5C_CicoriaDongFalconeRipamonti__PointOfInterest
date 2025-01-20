@@ -1,9 +1,9 @@
 export const parseConfiguration = (async (path) => {
-    try{
+    try {
         const response = await fetch(path);
         const json = await response.json();
         return json;
-    } catch(error){
+    } catch (error) {
         throw error;
     }
 });
