@@ -61,7 +61,7 @@ const poiFormConfig = {
 await cache.build("/config.json", "cache");
 await geoEncoder.build("/config.json", "location");
 await credential.build("/config.json", "credential");
-
+/*
 await cache.setData({
     "flensburg": {
         ["Kurt-Tucholsky-Schule (KTS)".deleteSpace()]: {
@@ -155,7 +155,7 @@ await cache.setData({
             "hash": "detail_5f92954e-6f3f-42ce-bb23-5980352d16f5"
         },
     }
-})
+})*/
 poiCreationModalForm.build(poiFormConfig, "poiForm");
 loginModalForm.build(loginFormConfig, "loginForm");
 

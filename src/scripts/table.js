@@ -97,7 +97,7 @@ export const createAdminTable = (parentElement, pubsub) => {
         render: async function (data) {
             if (!data) throw new Error("No data to render");
             let listToShow = data.flensburg;
-            let html = `
+                let html = `
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption class="sticky top-0"> List of all POI </caption>
                                 <thead
@@ -147,7 +147,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                     </table>
                 `;
             parentElement.innerHTML = html;
-
+/*
             for (const key in listToShow) {
                 document.getElementById(("edit-" + key)).onclick = async () => {
                     console.log("edit")
@@ -159,7 +159,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                     fetchComponent.getData();
                     console.log("remove")
                 }
-            }
+            }*/
 
         },
         renderFiltered: async function (filtered, data) {
@@ -218,6 +218,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                 </table>
             `;
             parentElement.innerHTML = html;
+            /*
             for (const key in listToShow) {
                 if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
                     document.getElementById(("edit-" + key)).onclick = async () => {
@@ -231,7 +232,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                         console.log("remove")
                     }
                 }
-            }
+            }*/
         },
         build: function (fetchC) {
             fetchComponent = fetchC;
