@@ -1,4 +1,4 @@
-export const createPage = (parentElement) => {
+export const createPage = (parentElement, pubsub) => {
     const TEMPLATE_PHOTOGALLERY = `<div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="%URL" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="%ALT">
         </div>`
@@ -99,11 +99,18 @@ export const createPage = (parentElement) => {
     let pageID;
 
     return {
-        build: (id, poiDict) => {
+        build: function (id, poiDict) {
             poiData = poiDict;
             pageID = id;
+            pubsub.subscribe("getData", (data) => {
+                for(const key in data.flensburg){
+                    poiData = data.flensburg[key];
+                    pageID = poiData.hash;
+                    this.render();
+                }
+            })
         },
-        render: async () => {
+        render: async function () {
             let htmlPage = `<article class="mt-16 poiPage hidden" id="` + pageID + `">`;
 
             htmlPage += TEMPLATE.replace("%PHOTO_TITLE", poiData.name);
@@ -123,7 +130,7 @@ export const createPage = (parentElement) => {
             htmlPage = htmlPage.replace("%POI_DESCRIPTION", poiData.description);
             htmlPage += `</article>`
 
-            parentElement.innerHTML = htmlPage;
+            parentElement.innerHTML += htmlPage;
             return pageID;
         }
     }
