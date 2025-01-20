@@ -25,6 +25,7 @@ import {
 import { createPubSub } from "./scripts/pubSub.js";
 import { keySelector } from "./utils/keySelector.js";
 
+location.href = "#flensburg";
 String.prototype.deleteSpace = function () {
     return this.replaceAll(/\s/g, "");
 }
@@ -32,8 +33,8 @@ String.prototype.deleteSpace = function () {
 // Declare & Initialize variables
 const pubsub = createPubSub();
 const searcher = document.getElementById("search-bar");
-const navigator = createNavigator(document.getElementsByName("main")[0]);
-const page = createPage(document.getElementsByName("main")[0]);
+const navigator = createNavigator(document.getElementById("main"));
+const page = createPage(document.getElementById("details"));
 const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
 const map = generateMap(document.getElementById("mapContainer"), pubsub);
@@ -147,7 +148,7 @@ loginModalForm.build(loginFormConfig, "loginForm");
 
 map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
 
-homeTable.build();
+homeTable.build(page);
 adminTable.build()
 
 await geoEncoder.build("/config.json", "location");
@@ -168,11 +169,6 @@ homeTable.render(keySelector(((await cache.getData()).flensburg), ["name", "adre
 adminTable.render(((await cache.getData()).flensburg));
 
 //FUNCTIONS
-setTimeout(() => {
-    console.log("Loading Done!");
-    document.getElementById("spinner").classList.add("hidden");
-    location.href = "#flensburg";
-}, 2000);
 
 let searchCallback = (originalData, pattern) => {
     // Ricostruisce il dizionario basandosi sul pattern
@@ -268,6 +264,12 @@ document.getElementById("modalInsertAdminButton").onclick = () => {
 }
 document.getElementById("close-modal-POI").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.toggle("hidden");
+}
+//Zoom Map
+document.getElementById("flyToMap").onclick = () => {
+    const srValue = document.getElementById("search-bar").value;
+    if(!srValue || srValue.trim().lenght < 1 || srValue == undefined || srValue == null) return;
+    // Nella mappa andare al marker (metodo .flyTo([lat,lon],zoom) da implementare nel map component)
 }
 
 //EVENT LISTENER

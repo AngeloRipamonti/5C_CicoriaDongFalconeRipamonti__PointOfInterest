@@ -37,7 +37,7 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main id="main">
         <div id="spinner" class="loader-container">
             <div class="loader"></div>
             <div class="loader-text">Loading...</div>
@@ -112,7 +112,7 @@
                 </div>
                 <div>
                     <form class="max-w-md mx-auto">
-                        <label for="search-bar" class="sr-only">Search</label>
+                        <label for="search-bar" class="sr-only">Zoom</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -124,8 +124,8 @@
                             <input type="text" id="search-bar"
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search for a POI..." required />
-                            <button type="submit"
-                                class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Search</button>
+                            <button type="button" id="flyToMap"
+                                class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Zoom</button>
                         </div>
                     </form>
                 </div>
@@ -463,6 +463,8 @@
                 </div>
             </div>
         </article>
+
+        <article id="details"></article>
 
     </main>
     <script type="module" src="/src/index.js"></script>

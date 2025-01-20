@@ -105,9 +105,9 @@ export const createPage = (parentElement) => {
             poiData = poiDict;
             pageID = id;
         },
-        render: () => {
+        render: async () => {
             const hash = uuidv4();
-            let htmlPage = `<div id="` + ("detail_" + hash) + `" class="mt-16 poiPage hidden">`;
+            let htmlPage = `<article class="mt-16 poiPage hidden" id="` + ("detail_" + hash) + `">`;
 
             console.log(hash);
 
@@ -127,7 +127,7 @@ export const createPage = (parentElement) => {
             htmlPage = htmlPage.replace("%POI_LONGITUDE", poiData.lon);
             htmlPage = htmlPage.replace("%POI_PRICE", poiData.price);
             htmlPage = htmlPage.replace("%POI_DESCRIPTION", poiData.description);
-            htmlPage += `</div>`
+            htmlPage += `</article>`
 
             parentElement.innerHTML = htmlPage;
             return "detail_" + hash;
