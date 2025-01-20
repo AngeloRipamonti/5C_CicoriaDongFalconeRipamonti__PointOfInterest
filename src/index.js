@@ -229,7 +229,7 @@ poiCreationModalForm.onsubmit(async poiArr => {
             let data = await cache.getData();
             data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
             await cache.setData(data);
-            adminTable.render(data.flensburg);
+            adminTable.render(data);
             document.getElementById("close-modal-POI").click();
         } catch (e) {
             console.error(e);
@@ -293,6 +293,7 @@ searcher.addEventListener("input", async (event) => {
 
 // Edit POI Action
 
+const editModal = document.getElementById("edit-modal-POI");
 let currentEditing;
 
 const dataFlensburg = (await cache.getData())["flensburg"]
@@ -300,7 +301,7 @@ const dataFlensburg = (await cache.getData())["flensburg"]
 for (const key in (await cache.getData())["flensburg"]) {
     document.getElementById("edit-" + key).onclick = () => {
         currentEditing = key;
-        document.getElementById("edit-modal-POI").classList.toggle("hidden");
+        editModal.classList.remove("hidden");
         poiEditingModalForm.render({
             "name": dataFlensburg[key]["name"],
             "description": dataFlensburg[key]["description"],
@@ -310,7 +311,6 @@ for (const key in (await cache.getData())["flensburg"]) {
         })
     }
 }
-
 
 poiEditingModalForm.onsubmit(async poiArr => {
     //convert the array returned by the form into a dictionary
@@ -338,8 +338,8 @@ poiEditingModalForm.onsubmit(async poiArr => {
             delete data.flensburg[(poiDict["name"].deleteSpace())];
             data.flensburg[currentEditing] = poiDict;
             await cache.setData(data);
-            adminTable.render(data.flensburg);
-            document.getElementById("close-modal-EditPOI").click();
+            adminTable.render(data);
+            //document.getElementById("close-modal-EditPOI").click(); da problemi
         } catch (e) {
             console.error(e);
             poiEditingModalForm.setStatus("Cache error, please try again!");
@@ -351,8 +351,6 @@ poiEditingModalForm.onsubmit(async poiArr => {
     }
 });
 
-
-
 document.getElementById("close-modal-EditPOI").onclick = () => {
-    document.getElementById("edit-modal-POI").classList.toggle("hidden");
+    editModal.classList.add("hidden");
 }

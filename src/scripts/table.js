@@ -114,7 +114,6 @@ export const createAdminTable = (parentElement, pubsub) => {
                                     </tr>
                                 </thead>
                         <tbody>`;
-
             for (const element in listToShow) {
                 html += `<tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -155,19 +154,6 @@ export const createAdminTable = (parentElement, pubsub) => {
                     fetchComponent.getData();
                 }
             }
-/*
-            for (const key in listToShow) {
-                document.getElementById(("edit-" + key)).onclick = async () => {
-                    console.log("edit")
-
-                }
-                document.getElementById(("remove-" + key)).onclick = async () => {
-                    data.flensburg[key] = undefined;
-                    await fetchComponent.setData(data);
-                    fetchComponent.getData();
-                    console.log("remove")
-                }
-            }*/
 
         },
         renderFiltered: async function (filtered, data) {
@@ -241,7 +227,6 @@ export const createAdminTable = (parentElement, pubsub) => {
             }*/
         },
         build: function (fetchC) {
-
             fetchComponent = fetchC;
             pubsub.subscribe("getData", (data) => {
                 this.render(data);
