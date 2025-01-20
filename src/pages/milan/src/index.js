@@ -1,13 +1,13 @@
 //Imports
 import {
     createNavigator
-} from "./src/scripts/navigator.js";
+} from "./scripts/navigator.js";
 import {
     generateMap
-} from "./src/scripts/mapComponent.js";
+} from "./scripts/mapComponent.js";
 import {
     generateModalForm
-} from "./src/scripts/formComponent.js";
+} from "./scripts/formComponent.js";
 import {
     generateFetchComponent
 } from "./scripts/fetch.js";

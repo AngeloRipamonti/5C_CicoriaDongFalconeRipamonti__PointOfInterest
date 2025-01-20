@@ -24,6 +24,14 @@ export const generateMap = (parentElement, pubsub) => {
                 if (POI) {
                     const marker = L.marker(POI.coords).addTo(map);
                     marker.bindPopup("<b>" + POI.name + "</b><br>");
+
+                    marker.onclick = () => {
+                        map.flyTo(POI.coords, 13, {
+                            animate: true,
+                            duration: 1.5,
+                            easeLinearity: 0.1
+                        });
+                    };
                 }
             });
         },
