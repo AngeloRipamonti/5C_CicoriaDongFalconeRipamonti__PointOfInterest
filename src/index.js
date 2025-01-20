@@ -230,7 +230,7 @@ poiCreationModalForm.onsubmit(async poiArr => {
             data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
             await cache.setData(data);
             adminTable.render(data.flensburg);
-            document.getElementById("close-modal-EditPOI").click();
+            document.getElementById("close-modal-POI").click();
         } catch (e) {
             console.error(e);
             poiCreationModalForm.setStatus("Cache error, please try again!");
