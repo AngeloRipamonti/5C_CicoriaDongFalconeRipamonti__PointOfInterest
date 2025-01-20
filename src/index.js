@@ -36,12 +36,6 @@ const cache = generateFetchComponent();
     {Title: "Kurt-Tucholsky-Schule(KTS)", Address: "Richard-Wagner-Straße 41, 24943 Flensburg, Germany"},
     {Title: "Hafenspitze", Address: "Am Kanalschuppen, 24937 Flensburg, Germany"},
 ];*/
-const data = {
-    "KTS": {
-        "title": "Kurt-Tucholsky-Schule",
-        "address": "Richard-Wagner-Straße 41 , 24943 Flensburg, Germany",
-    }
-}
 const geoEncoder = generateGeoencoder();
 //*Input*
 const loginFormConfig = {
@@ -91,10 +85,20 @@ await cache.setData({
 })
 poiCreationModalForm.build(poiFormConfig, "poiForm");
 loginModalForm.build(loginFormConfig, "loginForm");
+
 map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
-homeTable.build("POI's_Table", keySelector((JSON.parse((await cache.getData())).flensburg), ["title", "adress"]));
-adminTable.build("AdminTable", JSON.parse((await cache.getData())).flensburg)
+homeTable.build("POI's_Table", keySelector((JSON.parse((await cache.getData())).flensburg), ["title", "adress"]), true);
+adminTable.build("AdminTable", JSON.parse((await cache.getData())).flensburg, true)
 await geoEncoder.build("/config.json", "location");
+
+//POI actions
+document.getElementById("modalInsertAdminButton").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.remove("hidden");
+    poiCreationModalForm.render() ;
+}
+document.getElementById("close-modal-POI").onclick = () => {
+    document.getElementById("authentication-modal-POI").classList.toggle("hidden");
+}
 
 //RENDER
 map.render();
@@ -232,8 +236,8 @@ document.getElementById("close-modal-POI").onclick = () => {
 }
 
 //EVENT LISTENER
-searcher.addEventListener("input", (event) => {
+searcher.addEventListener("input", async (event) => {
     const keyword = event.target.value;
-    let filteredData = searchCallback(data, keyword);
+    let filteredData = searchCallback(keySelector((JSON.parse((await cache.getData())).flensburg), ["title", "adress"]), keyword);
     homeTable.render(filteredData);
 });
