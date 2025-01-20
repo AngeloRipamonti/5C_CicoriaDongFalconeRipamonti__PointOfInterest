@@ -46,6 +46,41 @@
     text-transform: uppercase;
 }
 
+
+.mi-loader:before {
+    content: "";
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 6px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.mi-loader:after {
+    content: "";
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: spin 2s linear infinite;
+}
+
+.mi-loader-text {
+    font-size: 24px;
+    margin-top: 20px;
+    color: red;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(0.6);

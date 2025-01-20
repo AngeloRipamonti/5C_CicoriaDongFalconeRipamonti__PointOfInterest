@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/spinner.css">
+    <link rel="stylesheet" href="/dist/assets/css/output.css">
+    <title>Point Of Interest</title>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav
+            class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                    <img src="/assets/images/POI_Logo.png" class="h-8" alt="Point Of Interest Logo">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                        <a href="#milan">Point Of Interest</a>
+                    </span>
+                </div>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button type="button"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
+                        id="modalAdminLogin">
+                        Admin Page
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main id="main">
+        <div id="spinner" class="loader-container">
+            <div class="loader"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+
+        <div id="adminLoginPage">
+            <div id="authentication-modal-Login"
+                class="hidden fixed z-max inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
+                <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Insert a new location
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
+                                id="close-modal-Login">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <div class="p-4" id="loginModalBody">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <article id="milan" class="hidden mt-16 p-6 bg-gray-50 dark:bg-gray-900 poiPage">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Milan</span>
+                        map.
+                    </h1>
+                </div>
+                <div>
+                    <form class="max-w-md mx-auto">
+                        <label for="search-bar" class="sr-only">Zoom</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="search-bar"
+                                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Search for a POI..." required />
+                            <button type="button" id="flyToMap"
+                                class="absolute right-2.5 bottom-2.5 text-sm px-4 py-2 font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Zoom</button>
+                        </div>
+                    </form>
+                </div>
+
+                <style>
+                    #mapContainer {
+                        width: 100%;
+                        height: 500px;
+                    }
+                </style>
+                <div id="mapContainer">
+                    <!-- <img src="/assets/images/Mappa.PNG" alt="Place-holder map" class="w-full rounded-lg shadow-md"> -->
+                </div>
+
+                <div id="points-table"
+                    class="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-h-[70vh] overflow-y-scroll overflow-x-auto ml-[2%] table-fixed">
+                </div>
+            </div>
+        </article>
+
+        <article id="admin" class="hidden poiPage mt-16">
+            <div id="adminPage">
+                <article id="poiCreationPage">
+                    <div class="grid gap-4 mt-16">
+                        <div class="flex justify-between items-center mt-11">
+                            <div class="text-left">
+                                <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Admin Page</h1>
+                            </div>
+                            <div class="text-right">
+                                <button id="modalInsertAdminButton"
+                                    class="block text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
+                                    type="button">
+                                    Add new POI
+                                </button>
+                            </div>
+                        </div>
+                        <div id="adminTable">
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="poiCreationModal">
+                        <div id="authentication-modal-POI"
+                            class="hidden fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
+                            <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-700">
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <div
+                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                            Insert a new location
+                                        </h3>
+                                        <button type="button"
+                                            class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            id="close-modal-POI">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill=" none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                    </div>
+                                    <div class="p-4 md:p-5" id="poiCreationModalBody">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+        </article>
+
+        <article id="details"></article>
+
+    </main>
+    <script type="module" src="./src/index.js"></script>
+</body>
+
+</html>
