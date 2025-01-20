@@ -27,8 +27,8 @@ export const generateMap = (parentElement, pubsub) => {
                 }
             });
         },
-        moveToPOI: function (coords) {
-            map = L.map(parentElement).setView(coords, 16);
+        goTo: function (name) {
+            map.flyTo(points.filter(poi => poi.name === name)[0].coords, 16);
         }
     };
 };

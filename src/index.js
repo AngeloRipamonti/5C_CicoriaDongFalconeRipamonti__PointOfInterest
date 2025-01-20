@@ -59,6 +59,9 @@ const poiFormConfig = {
 
 //BUILD
 await cache.build("/config.json", "cache");
+await geoEncoder.build("/config.json", "location");
+await credential.build("/config.json", "credential");
+
 await cache.setData({
     "flensburg": {
         ["Kurt-Tucholsky-Schule (KTS)".deleteSpace()]: {
@@ -161,8 +164,6 @@ map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
 homeTable.build(page);
 adminTable.build(cache)
 
-await geoEncoder.build("/config.json", "location");
-await credential.build("/config.json", "credential");
 
 //POI actions
 document.getElementById("modalInsertAdminButton").onclick = () => {
@@ -281,7 +282,7 @@ document.getElementById("close-modal-POI").onclick = () => {
 document.getElementById("flyToMap").onclick = () => {
     const srValue = document.getElementById("search-bar").value;
     if(!srValue || srValue.trim().lenght < 1 || srValue == undefined || srValue == null) return;
-    // Nella mappa andare al marker (metodo .flyTo([lat,lon],zoom) da implementare nel map component)
+    map.goTo(srValue);
 }
 
 //EVENT LISTENER
