@@ -32,15 +32,6 @@ export const createHomeTable = (parentElement, pubsub) => {
                     </table>
                 `;
             parentElement.innerHTML = html;
-
-            for (const key in listToShow) {
-                document.getElementById(key).onclick = async () => {
-                    //pageCreator.build(listToShow[key].hash, listToShow[key]);
-                    //location.href = "#" + (await pageCreator.render());
-                }
-            }
-
-
         },
         renderFiltered: async function (filtered) {
             if (!data) throw new Error("No data to render");
@@ -72,17 +63,6 @@ export const createHomeTable = (parentElement, pubsub) => {
                 </table>
             `;
             parentElement.innerHTML = html;
-
-            for (const key in listToShow) {
-                if (((listToShow[key].name).toLowerCase()).includes((filtered.toLowerCase()))) {
-
-                    document.getElementById(key).onclick = async () => {
-                        //pageCreator.build(listToShow[key].hash, listToShow[key]);
-                        //location.href = "#" + (await pageCreator.render());
-                    }
-                }
-            }
-
         },
         build: async function (fetchC) {
             //pageCreator = pageC;
@@ -104,7 +84,7 @@ export const createAdminTable = (parentElement, pubsub) => {
         render: async function () {
             if (!data) throw new Error("No data to render");
             let listToShow = data.flensburg;
-                let html = `
+            let html = `
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <caption class="sticky top-0"> List of all POI </caption>
                                 <thead
@@ -160,13 +140,14 @@ export const createAdminTable = (parentElement, pubsub) => {
                     await fetchComponent.setData(data);
                     pubsub.publish("changePOI");
                 }
+                document.getElementById("edit-" + key).onclick = () => {
+                    pubsub.publish("editPOI", [listToShow, key]);
+                }
             }
-
         },
         build: async function (fetchC) {
             fetchComponent = fetchC;
-            data = (await fetchComponent.getData()); 
-            console.log(data);
+            data = (await fetchComponent.getData());
             pubsub.subscribe("changePOI", async () => {
                 data = (await fetchComponent.getData());
                 await this.render();

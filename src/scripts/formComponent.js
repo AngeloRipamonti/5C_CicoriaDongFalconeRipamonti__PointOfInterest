@@ -67,7 +67,7 @@ export const generateModalForm = (parentElement) => {
                 })
 
                 //console.log(result) ;
-                submitCallback(result);
+                submitCallback(result, configuration);
             }
             /*
             document.querySelectorAll(".clearForm").forEach(b => { // per i pulsanti che svuotano i campi del form

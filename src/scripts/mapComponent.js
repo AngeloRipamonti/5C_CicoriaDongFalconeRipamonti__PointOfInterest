@@ -43,7 +43,7 @@ export const generateMap = (parentElement, pubsub) => {
             });
         },
         goTo: function (name) {
-            map.flyTo(points.filter(poi => poi.name.include(name))[0].coords, 16);
+            map.flyTo(points.filter(poi => (poi.name).includes(name))[0].coords, 16);
         }
     };
 };
