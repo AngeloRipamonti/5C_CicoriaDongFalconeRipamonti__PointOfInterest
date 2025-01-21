@@ -21,8 +21,8 @@ export const createHomeTable = (parentElement, pubsub) => {
             for (const element in listToShow) {
                 html += `<tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button id="`+ element + `"
-                                        class="text-blue-600 dark:text-blue-400 hover:underline">`+ listToShow[element].name + `</button></td>
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><a href="#`+ listToShow[element].hash + `"
+                                        class="text-blue-600 dark:text-blue-400 hover:underline">`+ listToShow[element].name + `</a></td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
                             </tr>`
             };
@@ -61,7 +61,7 @@ export const createHomeTable = (parentElement, pubsub) => {
                 if (((listToShow[element].name).toLowerCase()).includes((filtered.toLowerCase()))) {
                     html += `<tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button id="`+ element + `"
+                                <td class="px-6 py-4 break-words whitespace-normal p-2"><button id="#`+ listToShow[element].hash + `"
                                         class="text-blue-600 dark:text-blue-400 hover:underline">`+ listToShow[element].name + `</button></td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].adress + `</td>
                             </tr>`
@@ -87,9 +87,9 @@ export const createHomeTable = (parentElement, pubsub) => {
         build: async function (fetchC) {
             //pageCreator = pageC;
             fetchComponent = fetchC;
-            data = keySelector(((await fetchComponent.getData()).flensburg), ["name", "adress"]);
+            data = keySelector(((await fetchComponent.getData()).flensburg), ["name", "adress", "hash"]);
             pubsub.subscribe("changePOI", async () => {
-                data = keySelector(((await fetchComponent.getData()).flensburg), ["name", "adress"]);
+                data = keySelector(((await fetchComponent.getData()).flensburg), ["name", "adress", "hash"]);
                 await this.render();
             });
         }

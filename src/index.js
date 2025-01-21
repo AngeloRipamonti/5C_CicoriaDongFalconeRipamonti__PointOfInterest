@@ -21,7 +21,7 @@ String.prototype.deleteSpace = function () {
 const pubsub = createPubSub();
 const searcher = document.getElementById("search-bar");
 const navigator = createNavigator(document.getElementById("main"));
-const page = createPage(document.getElementById("details"));
+const page = createPage(document.getElementById("details"), pubsub);
 const loginModalForm = generateModalForm(document.getElementById("loginModalBody"));
 const poiCreationModalForm = generateModalForm(document.getElementById("poiCreationModalBody"));
 const poiEditingModalForm = generateModalForm(document.getElementById("poiEditModalBody"));
@@ -156,6 +156,7 @@ poiEditingModalForm.build(poiEditFormConfig, "editPoiForm");
 await map.build([54.78194, 9.43667], cache); //Flensburg as the default position on the map
 await homeTable.build(cache, page);
 await adminTable.build(cache)
+await page.build(cache);
 
 
 //POI actions
@@ -270,7 +271,7 @@ document.getElementById("flyToMap").onclick = () => {
 searcher.addEventListener("input", async (event) => {
     const keyword = event.target.value;
     let filteredData = searchCallback(keySelector(((await cache.getData()).flensburg), ["name", "adress"]), keyword);
-    homeTable.renderFiltered(keyword, keySelector(((await cache.getData()).flensburg), ["name", "adress"]));
+    homeTable.renderFiltered(keyword);
 });
 
 // Edit POI Action
@@ -299,6 +300,7 @@ poiEditingModalForm.onsubmit(async poiArr => {
     let poiDict = {};
     let labels = Object.keys(poiEditFormConfig);
     poiArr.forEach((element, index) => {
+        if(poiArr[index] != undefined || poiArr[index] != null || poiArr[index].trim().length > 0)
         poiDict[labels[index]] = poiArr[index];
     });
     if ((poiDict["name"] != undefined || poiDict["name"] != null || poiDict["name"].trim().length > 0) &&
@@ -312,15 +314,15 @@ poiEditingModalForm.onsubmit(async poiArr => {
         let poiCoords = await geoEncoder.encode(poiDict.adress);
         poiDict.lat = poiCoords.coords[0];
         poiDict.lon = poiCoords.coords[1];
-        const hash = uuidv4();
-        poiDict.hash = "detail_"+hash;
 
         try {
             let data = await cache.getData();
             delete data.flensburg[(poiDict["name"].deleteSpace())];
-            data.flensburg[currentEditing] = poiDict;
+            for(const key in poiDict){
+                data.flensburg[key] = poiDict[key];
+            }            
             await cache.setData(data);
-            adminTable.render(data);
+            pubsub.publish("changePOI");
             //document.getElementById("close-modal-EditPOI").click(); da problemi
         } catch (e) {
             console.error(e);

@@ -1,4 +1,6 @@
 export const createPage = (parentElement, pubsub) => {
+    let fetchComponent;
+    let data;
     const TEMPLATE_PHOTOGALLERY = `<div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="%URL" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="%ALT">
         </div>`
@@ -12,7 +14,7 @@ export const createPage = (parentElement, pubsub) => {
 
             <div id="gallery" class="relative w-full" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div id="photogallery%ID_PHOTOGALLERY" class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                <div id="photogallery_%ID_PHOTOGALLERY" class="relative h-56 overflow-hidden rounded-lg md:h-96">
                 %PHOTOGALLERY_CONTENT
                 </div>
                 <!-- Slider controls -->
@@ -95,43 +97,46 @@ export const createPage = (parentElement, pubsub) => {
         </table>
     </div>
 </div>` ;
-    let poiData;
-    let pageID;
+
+
+    function render(poiData) {
+        let htmlPage = `<article class="mt-16 poiPage hidden" id="` + poiData.hash + `">`;
+
+        htmlPage += TEMPLATE.replace("%PHOTO_TITLE", poiData.name);
+        let imgsHtml = "";
+        poiData.imageLink.forEach((element) => {
+            imgsHtml += TEMPLATE_PHOTOGALLERY.replace("%URL", element);
+            imgsHtml = imgsHtml.replace("%ALT", poiData.name);
+        });
+        htmlPage = htmlPage.replace("%ID_PHOTOGALLERY", poiData.hash);
+        htmlPage = htmlPage.replace("%PHOTOGALLERY_CONTENT", imgsHtml);
+        htmlPage = htmlPage.replace("%POI_TITLE", poiData.name);
+        htmlPage = htmlPage.replace("%ADRESS", poiData.adress);
+        htmlPage = htmlPage.replace("%POI_LATITUDE", poiData.lat);
+        htmlPage = htmlPage.replace("%POI_LONGITUDE", poiData.lon);
+        htmlPage = htmlPage.replace("%POI_PRICE", poiData.price);
+        htmlPage = htmlPage.replace("%POI_DESCRIPTION", poiData.description);
+        htmlPage += `</article>`
+
+        parentElement.innerHTML += htmlPage;
+    }
+
 
     return {
-        build: function (id, poiDict) {
-            poiData = poiDict;
-            pageID = id;
-            pubsub.subscribe("getData", async (data) => {
-                for(const key in data.flensburg){
-                    poiData = data.flensburg[key];
-                    pageID = poiData.hash;
-                    await this.render();
+        build: async function (fetchC) {
+            fetchComponent = fetchC;
+            data = (await fetchComponent.getData()).flensburg
+            parentElement.innerHTML = "";
+            for(const key in data){
+                render(data[key])
+            }
+            pubsub.subscribe("changePOI", async () => {
+                data = (await fetchComponent.getData()).flensburg
+                parentElement.innerHTML = "";
+                for(const key in data){
+                    render(data[key])
                 }
             })
-        },
-        render: async function () {
-            let htmlPage = `<article class="mt-16 poiPage hidden" id="` + pageID + `">`;
-
-            htmlPage += TEMPLATE.replace("%PHOTO_TITLE", poiData.name);
-            let imgsHtml = "";
-            poiData.imageLink.forEach((element) => {
-                imgsHtml += TEMPLATE_PHOTOGALLERY.replace("%URL", element);
-                imgsHtml = imgsHtml.replace("%ALT", poiData.name);
-            });
-            htmlPage = htmlPage.replace("%ID", pageID);
-            htmlPage = htmlPage.replace("%ID_PHOTOGALLERY", pageID);
-            htmlPage = htmlPage.replace("%PHOTOGALLERY_CONTENT", imgsHtml);
-            htmlPage = htmlPage.replace("%POI_TITLE", poiData.name);
-            htmlPage = htmlPage.replace("%ADRESS", poiData.adress);
-            htmlPage = htmlPage.replace("%POI_LATITUDE", poiData.lat);
-            htmlPage = htmlPage.replace("%POI_LONGITUDE", poiData.lon);
-            htmlPage = htmlPage.replace("%POI_PRICE", poiData.price);
-            htmlPage = htmlPage.replace("%POI_DESCRIPTION", poiData.description);
-            htmlPage += `</article>`
-
-            parentElement.innerHTML += htmlPage;
-            return pageID;
         }
     }
 }
