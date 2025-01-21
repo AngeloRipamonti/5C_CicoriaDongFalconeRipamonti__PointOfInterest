@@ -115,7 +115,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                                 <td class="px-6 py-4 break-words whitespace-normal p-2">`+ listToShow[element].price + `</td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2"><div>`;
                 listToShow[element].imageLink.forEach(img => {
-                    html += `<img src="` + img + `" class="rounded-lg"></td>`;
+                    html += `<img src="` + img + `" class="rounded-lg duration-700 ease-in-out" data-carousel-item>`;
                 })
                 html += `</div></td>
                                 <td class="px-6 py-4 break-words whitespace-normal p-2"><button type="button" id="edit-`+ element + `"
