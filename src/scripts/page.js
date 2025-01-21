@@ -1,7 +1,7 @@
 export const createPage = (parentElement, pubsub) => {
     let fetchComponent;
     let data;
-    const TEMPLATE_PHOTOGALLERY = `<div class="hidden duration-700 ease-in-out" data-carousel-item>
+    const TEMPLATE_PHOTOGALLERY = `<div class="duration-700 ease-in-out" data-carousel-item>
             <img src="%URL" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="%ALT">
         </div>`
 
