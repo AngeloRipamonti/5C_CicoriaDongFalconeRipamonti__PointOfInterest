@@ -142,6 +142,7 @@ export const createAdminTable = (parentElement, pubsub) => {
                 }
                 document.getElementById("edit-" + key).onclick = () => {
                     pubsub.publish("editPOI", [listToShow, key]);
+                    console.log("edit-" + key) ;
                 }
             }
         },
