@@ -1,31 +1,17 @@
 //Imports
-import {
-    createNavigator
-} from "/src/scripts/navigator.js";
-import {
-    generateMap
-} from "/src/scripts/mapComponent.js";
-import {
-    generateModalForm
-} from "/src/scripts/formComponent.js";
-import {
-    generateFetchComponent
-} from "./scripts/fetch.js";
-import {
-    createHomeTable,
-    createAdminTable
-} from "./scripts/table.js";
-import {
-    generateGeoencoder
-} from "./scripts/geoencoderComponent.js";
-import {
-    createPage
-} from "./scripts/page.js";
+import { createNavigator } from "/src/scripts/navigator.js";
+import { generateMap } from "/src/scripts/mapComponent.js";
+import { generateModalForm } from "/src/scripts/formComponent.js";
+import { generateFetchComponent } from "./scripts/fetch.js";
+import { createHomeTable, createAdminTable } from "./scripts/table.js";
+import { generateGeoencoder } from "./scripts/geoencoderComponent.js";
+import { createPage } from "./scripts/page.js";
 //import Cookies from "/node_modules/js-cookie/dist/js.cookie.min.mjs";
 import { createPubSub } from "./scripts/pubSub.js";
 import { keySelector } from "./utils/keySelector.js";
 import { v4 as uuidv4 } from '/node_modules/uuid/dist/esm-browser/index.js';
 
+//Preliminaries
 location.href = "#flensburg";
 String.prototype.deleteSpace = function () {
     return this.replaceAll(/\s/g, "");
@@ -57,7 +43,6 @@ const poiFormConfig = {
     "price": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "imageLink": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"]
 }
-
 const poiEditFormConfig = {
     "name": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
     "description": ["text", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"],
@@ -168,11 +153,9 @@ await cache.setData({
 poiCreationModalForm.build(poiFormConfig, "poiForm");
 loginModalForm.build(loginFormConfig, "loginForm");
 poiEditingModalForm.build(poiEditFormConfig, "editPoiForm");
-
-map.build([54.78194, 9.43667]); //Flensburg as the default position on the map
-
-homeTable.build(page);
-adminTable.build(cache)
+await map.build([54.78194, 9.43667], cache); //Flensburg as the default position on the map
+await homeTable.build(cache, page);
+await adminTable.build(cache)
 
 
 //POI actions
@@ -184,11 +167,10 @@ document.getElementById("close-modal-POI").onclick = () => {
     document.getElementById("authentication-modal-POI").classList.toggle("hidden");
 }
 
-
 //RENDER
 map.render();
-homeTable.render(keySelector(((await cache.getData()).flensburg), ["name", "adress"]));
-adminTable.render(((await cache.getData())));
+homeTable.render();
+adminTable.render();
 
 //FUNCTIONS
 
@@ -229,7 +211,7 @@ poiCreationModalForm.onsubmit(async poiArr => {
             let data = await cache.getData();
             data.flensburg[(poiDict["name"].deleteSpace())] = poiDict;
             await cache.setData(data);
-            adminTable.render(data);
+            pubsub.publish("changePOI");
             document.getElementById("close-modal-POI").click();
         } catch (e) {
             console.error(e);

@@ -89,6 +89,26 @@
             "price": "Free",
             "imageLink": ["/assets/images/Alter Kaufmannhof.jpg"],
             "hash": "detail_5f92954e-6f3f-42ce-bb23-5980352d16f5"
+        },
+        "FlensburgerSchifffahrtsmuseum": {
+            "name": "Flensburger Schifffahrtsmuseum",
+            "description": "Flensburg, today located in the far north of Schleswig-Holstein, is an old port city. In the museum you can learn everything about the port and the merchant shipyards, about military and merchant ships, about shipyards, about ropes and rigging, about machines and engines, about engineers and captains and their daily life at sea. There are several interesting tours in the museum, here are some: Marine technology, as mobile work and living spaces, ships are determined by technology in every way. Steam engine and diesel engine, radio and GPS, charging equipment and charging computers, electric light and air conditioning. In this exhibition you can discover how technical innovations have changed the nautical industry and its professions over the last 150 years. Port and Courtyards, In this exhibition you can learn about the merchants, captains, shipowners who, thanks to their energy and entrepreneurial spirit, managed to provide enough capital for the development of the maritime trading town that is now known as Flensburg. Fjord Shipping, Fjord shipping is the cruise of the little people. In its heyday before the First World War, the fjord steamship fleet shaped the port of Flensburg with its lively passenger and freight traffic. Summer excursions have developed into a general leisure activity. While elsewhere you took the train \"in the country\", in Flensburg you took the ship. In this exhibition you can discover the mechanism behind it.",
+            "adress": "Schiffbrücke 39, 24939 Flensburg, Germany",
+            "lat": "54.7930556",
+            "lon": "9.4331606",
+            "price": "8* EUR",
+            "imageLink": ["/assets/images/Schifffahrtsmuseum.jpg"],
+            "hash": "detail_2bf91339-7d49-47d4-9689-d7fd233a4b28"
+        },
+        "PHÄNOMENTA": {
+            "name": "PHÄNOMENTA",
+            "description": "What does MINT stand for? It stands for Mathematics, Computer Science, Natural Sciences and Technology. Yet according to a 2022 survey, only one in two Germans knows it. To make these areas more accessible and fascinating, science centers like PHÄNOMENTA in Flensburg offer interactive experiences that go beyond the traditional “nerd” approach. Founded in 1985, PHÄNOMENTA was the first hands-on science center in Germany and is now one of the most visited destinations on the Flensburg Fjord. With over 170 interactive stations, visitors can explore scientific phenomena by observing, experimenting and discovering the reactions to their actions. Inspiring curiosity and passion for science in people of all ages. From 13 to 73, whether you are with family, friends or colleagues, there is always something to discover. In an increasingly digital world, tactile experiences provide balance, stimulate cognitive and motor skills, and spark interest in scientific careers. An interactive exhibit where touching, feeling and experimenting are encouraged. Cranks to turn, pedals to push, puzzles to solve and games of light, mirrors and colors to explore. Areas such as: The classics; The room of light; Rotational motion; Puzzles and combinations; Mirrors and visual illusions; Senses and deception; A sea of ​​colors await you.",
+            "adress": "Norderstraße 157-163, 24939 Flensburg, Germany",
+            "lat": "54.7953852",
+            "lon": "9.4301531",
+            "price": "14 EUR",
+            "imageLink": ["/assets/images/PHÄNOMENTA.jpg"],
+            "hash": "detail_45c9637f-aa4e-45de-af39-5194ca3215a0"
         }
     }
 }
