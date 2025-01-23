@@ -54,7 +54,6 @@ export function generateFetchComponent(pubsub) {
                 });
                 const data = await r.json();
                 const res = JSON.parse(data.result);
-                pubsub.publish("getData", res);
                 return res;
             } catch (error) {
                 throw error;

@@ -14,7 +14,7 @@ export const generateModalForm = (parentElement) => {
         oncancel: (inputCallback) => {
             cancelCallback = inputCallback;
         },
-        render: () => {
+        render: (preValues) => {
             /*
             *Output*
             const loginFormOutput = {
@@ -41,8 +41,14 @@ export const generateModalForm = (parentElement) => {
             //let values = Object.values(configuration) ;
 
             labels.forEach(e => {
-                html += '<div><label for="' + e + '" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
-                    + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + '" value=""></div>'
+                if (preValues == null) {
+                    html += '<div><label for="' + e + '" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
+                        + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + '" value=""></div>'
+                } else {
+                    html += '<div><label for="' + e + '" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">' + e + '</label>'
+                        + '<input type="' + configuration[e][0] + '" name="' + e + '" id="' + e + '" class="' + configuration[e][1] + `" value="` + preValues[e] + `"></div>`
+                }
+
             });
 
             html += '<button type="button" id="submitButton' + idForm + '" class=" w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700">Submit</button></form>'
@@ -61,7 +67,7 @@ export const generateModalForm = (parentElement) => {
                 })
 
                 //console.log(result) ;
-                submitCallback(result);
+                submitCallback(result, configuration);
             }
             /*
             document.querySelectorAll(".clearForm").forEach(b => { // per i pulsanti che svuotano i campi del form

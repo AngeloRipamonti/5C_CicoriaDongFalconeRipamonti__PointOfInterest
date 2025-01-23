@@ -9,9 +9,9 @@ const show = (element) => {
 }
 
 export const createNavigator = (parentElement) => {
-    const pages = Array.from(document.querySelectorAll(".poiPage"));
 
     const render = () => {
+        const pages = Array.from(document.querySelectorAll(".poiPage"));
         const url = new URL(document.location.href);
         const pageName = url.hash.replace("#", "");
         const selected = pages.filter((page) => page.id === pageName)[0] || pages[0];
