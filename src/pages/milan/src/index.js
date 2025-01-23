@@ -58,7 +58,16 @@ await credential.build("/config.json", "credential");
 /*
 await cache.setData({
     "milan":{
-
+        "loremipsum": {
+            name: "lorem ipsum",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            adress: "Piazza del duomo, Milano, Italia",
+            "lat": "45.464098",
+            "lon": "9.191926",
+            "price": "0",
+            "imageLink": ["/assets/images/kts.jpg"],
+            "hash": "detail_duomo"
+        }
     },
     "flensburg": {
         "Kurt-Tucholsky-Schule(KTS)": {

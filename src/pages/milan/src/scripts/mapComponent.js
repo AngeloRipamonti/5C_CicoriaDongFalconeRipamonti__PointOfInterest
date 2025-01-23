@@ -13,13 +13,13 @@ export const generateMap = (parentElement, pubsub) => {
                 maxZoom: 19,
                 attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
-            let smth = keySelector((await fetchComponent.getData()).flensburg, ["name", "lat", "lon"]);
+            let smth = keySelector((await fetchComponent.getData()).milan, ["name", "lat", "lon"]);
             for (const key in smth) {
                 points.push({ name: smth[key].name, coords: [smth[key].lat, smth[key].lon] });
             }
             pubsub.subscribe("changePOI", async () => {
                 const data = await fetchComponent.getData();
-                let smth = keySelector(data.flensburg, ["name", "lat", "lon"]);
+                let smth = keySelector(data.milan, ["name", "lat", "lon"]);
                 for (const key in smth) {
                     points.push({ name: smth[key].name, coords: [smth[key].lat, smth[key].lon] });
                 }
